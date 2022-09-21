@@ -2,9 +2,9 @@
 
 namespace be.MbDevelopment.Greenmaster.Models.Arboretum.PlantTypes;
 
-public class Hedge<T> : PlantUseBase<T> where T : Specie
+public class Tree<T> : PlantUseBase<T> where T : Specie
 {
-    public Hedge(T specie) : base(specie)
+    public Tree(T specie) : base(specie)
     {
     }
 }
