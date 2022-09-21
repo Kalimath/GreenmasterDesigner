@@ -1,4 +1,6 @@
-﻿namespace be.MbDevelopment.Greenmaster.Extensions.Methods;
+﻿using JetBrains.Annotations;
+
+namespace be.MbDevelopment.Greenmaster.Extensions.Methods;
 
 public static class ExtensionMethods
 {
