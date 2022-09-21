@@ -20,4 +20,12 @@ public class PlantDimensions
 
     public double MetricHeight { get; private set; }
     public double MetricDiameter { get; private set; }
+
+    public void ConvertToMetricDiameter(double validMetricLength, double validMetricWidth)
+    {
+        ValidateMetricValue(validMetricLength);
+        ValidateMetricValue(validMetricWidth);
+        var metricValueArray = new[] { validMetricLength, validMetricWidth };
+        this.MetricDiameter = metricValueArray.Average();
+    }
 }
