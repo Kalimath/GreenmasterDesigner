@@ -8,11 +8,18 @@
 
     <ItemGroup>
       <ProjectReference Include="..\be.MbDevelopment.Greenmaster.Extensions\be.MbDevelopment.Greenmaster.Extensions.csproj" />
+      <ProjectReference Include="..\be.MbDevelopment.Greenmaster.Models\be.MbDevelopment.Greenmaster.Models.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
       <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
+      <PackageReference Include="xunit" Version="2.4.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="UnitTests\Models" />
     </ItemGroup>
 
 </Project>

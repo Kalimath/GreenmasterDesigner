@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "be.MbDevelopment.Greenmaste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "be.MbDevelopment.Greenmaster.Extensions", "be.MbDevelopment.Greenmaster.Extensions\be.MbDevelopment.Greenmaster.Extensions.csproj", "{5E5B0077-080D-4463-BD3E-E61B383FDAC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "be.MbDevelopment.Greenmaster.Tests", "be.MbDevelopment.Greenmaster.Tests\be.MbDevelopment.Greenmaster.Tests.csproj", "{62C17F65-1CBE-4981-A1A8-49972D40C4C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{5E5B0077-080D-4463-BD3E-E61B383FDAC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E5B0077-080D-4463-BD3E-E61B383FDAC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E5B0077-080D-4463-BD3E-E61B383FDAC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C17F65-1CBE-4981-A1A8-49972D40C4C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C17F65-1CBE-4981-A1A8-49972D40C4C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C17F65-1CBE-4981-A1A8-49972D40C4C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C17F65-1CBE-4981-A1A8-49972D40C4C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
