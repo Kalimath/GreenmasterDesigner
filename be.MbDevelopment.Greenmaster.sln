@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "be.MbDevelopment.Greenmaster.Models", "be.MbDevelopment.Greenmaster.Models\be.MbDevelopment.Greenmaster.Models.csproj", "{F1A5ECC8-5745-40B2-95D9-FC95E0F148DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "be.MbDevelopment.Greenmaster.Extensions", "be.MbDevelopment.Greenmaster.Extensions\be.MbDevelopment.Greenmaster.Extensions.csproj", "{5E5B0077-080D-4463-BD3E-E61B383FDAC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{F1A5ECC8-5745-40B2-95D9-FC95E0F148DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1A5ECC8-5745-40B2-95D9-FC95E0F148DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1A5ECC8-5745-40B2-95D9-FC95E0F148DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E5B0077-080D-4463-BD3E-E61B383FDAC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E5B0077-080D-4463-BD3E-E61B383FDAC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E5B0077-080D-4463-BD3E-E61B383FDAC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E5B0077-080D-4463-BD3E-E61B383FDAC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
