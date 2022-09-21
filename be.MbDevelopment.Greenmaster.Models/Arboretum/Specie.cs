@@ -14,12 +14,20 @@ public class Specie
 
     public Specie(string scientificName, EnumVDictionary<Language, string> commonNames, PlantProperties properties, PlantDimensions dimensions)
     {
-        ScientificName = !string.IsNullOrWhiteSpace(scientificName)
-            ? scientificName
-            : throw new ArgumentException(nameof(scientificName));
-        CommonNames = commonNames;
-        Properties = properties;
-        Dimensions = dimensions;
+        try
+        {
+            ScientificName = !string.IsNullOrWhiteSpace(scientificName)
+                ? scientificName
+                : throw new ArgumentException(nameof(scientificName));
+            CommonNames = commonNames;
+            Properties = properties;
+            Dimensions = dimensions;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw;
+        }
     }
 
     public Specie(string scientificName, PlantDimensions dimensions) : this(scientificName, new EnumVDictionary<Language, string>(), null!, dimensions)

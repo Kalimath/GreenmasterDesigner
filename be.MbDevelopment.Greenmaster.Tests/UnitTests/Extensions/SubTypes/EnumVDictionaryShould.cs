@@ -7,20 +7,21 @@ namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Extensions.SubTypes;
 public class EnumDirectoryShould
 {
     private readonly string _testValue;
+    private EnumVDictionary<TestEnum, string> _validEnumVDictionary;
 
     public EnumDirectoryShould()
     {
         _testValue = "test if it works";
+        _validEnumVDictionary = new EnumVDictionary<TestEnum, string>();
     }
 
     [Fact]
     public void InitiateTEnumKeyValuePairsOnCreation()
     {
-        var createdDir = new EnumVDictionary<TestEnum, string>();
-        if (createdDir == null) throw new ArgumentNullException(nameof(createdDir));
-        Assert.True(createdDir.ContainsKey(TestEnum.Test1.ToString()));
-        Assert.True(createdDir.ContainsKey(TestEnum.Tester.ToString()));
-        Assert.True(createdDir.ContainsKey(TestEnum.Testing.ToString()));
+        if (_validEnumVDictionary == null) throw new ArgumentNullException(nameof(_validEnumVDictionary));
+        Assert.True(_validEnumVDictionary.ContainsKey(TestEnum.Test1.ToString()));
+        Assert.True(_validEnumVDictionary.ContainsKey(TestEnum.Tester.ToString()));
+        Assert.True(_validEnumVDictionary.ContainsKey(TestEnum.Testing.ToString()));
     }
 
     [Fact]
@@ -34,13 +35,13 @@ public class EnumDirectoryShould
     [Fact]
     public void AddWhenKeyIsTypeEnumAndAlreadyExists()
     {
-        var createdDir = new EnumVDictionary<TestEnum, string> { { TestEnum.Tester, _testValue } };
-        Assert.Null(createdDir[TestEnum.Test1.ToString()]);
-        Assert.Equal(_testValue, createdDir[TestEnum.Tester.ToString()]);
-        Assert.Null(createdDir[TestEnum.Testing.ToString()]);
+        _validEnumVDictionary.Add(TestEnum.Tester, _testValue);
+        Assert.Null(_validEnumVDictionary[TestEnum.Test1.ToString()]);
+        Assert.Equal(_testValue, _validEnumVDictionary[TestEnum.Tester.ToString()]);
+        Assert.Null(_validEnumVDictionary[TestEnum.Testing.ToString()]);
     }
     
-    [Fact]
+    /*[Fact]
     public void ReturnTrueWhenContainsKey()
     {
         throw new NotImplementedException();
@@ -55,14 +56,14 @@ public class EnumDirectoryShould
     [Fact]
     public void ReturnTrueWhenContainsValue()
     {
-        throw new NotImplementedException();
+        _validEnumVDictionary.ContainsValue()
     }
     
     [Fact]
     public void ReturnFalseWhenNotContainsValue()
     {
         throw new NotImplementedException();
-    }
+    }*/
 
    
     

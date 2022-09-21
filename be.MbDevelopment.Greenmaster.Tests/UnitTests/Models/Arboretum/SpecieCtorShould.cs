@@ -66,13 +66,11 @@ public class SpecieCtorShould
     }
     
     [Fact]
-    public void ThrowInvalidDimensionsExceptionWhenPlantDimensionsEmpty()
+    public void ThrowArgumentOutOfRangeExceptionWhenPlantDimensionsEmpty()
     {
-        Assert.Throws<InvalidDimensionsException>(() =>
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            var specie = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, _validPlantDimensions);
-            _testOutputHelper.WriteLine(specie.Dimensions.MetricHeight+"");
-            Assert.True(specie.Dimensions.MetricHeight>0);
+            var specie = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, new PlantDimensions(-15.8, 66));
         });
     }
 

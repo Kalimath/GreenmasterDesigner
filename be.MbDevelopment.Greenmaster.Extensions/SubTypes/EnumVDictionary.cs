@@ -9,7 +9,7 @@ public class EnumVDictionary<TEnum, TValue> : Dictionary<string, TValue> where T
         this.InitiateEnumKeys();
     }
 
-    public void InitiateEnumKeys()
+    private void InitiateEnumKeys()
     {
         if (typeof(TEnum).IsEnum)
         {
@@ -24,7 +24,7 @@ public class EnumVDictionary<TEnum, TValue> : Dictionary<string, TValue> where T
             throw new InvalidEnumArgumentException("TEnum must be an enumerated type");
         }
     }
-
+    
     public void Add(TEnum eKey, TValue value)
     {
         var stringifiedEnumKey = eKey.ToString();

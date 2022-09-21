@@ -7,10 +7,18 @@ public class PlantDimensions
 {
     public PlantDimensions(double metricHeight, double metricDiameter)
     {
-        ValidateMetricValue(metricHeight);
-        ValidateMetricValue(metricDiameter);
-        MetricHeight = metricHeight;
-        MetricDiameter = metricDiameter;
+        try
+        {
+            ValidateMetricValue(metricHeight);
+            ValidateMetricValue(metricDiameter);
+            MetricHeight = metricHeight;
+            MetricDiameter = metricDiameter;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw;
+        }
     }
 
     private void ValidateMetricValue(double metricValue)
