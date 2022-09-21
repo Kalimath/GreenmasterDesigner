@@ -2,9 +2,13 @@
 
 namespace be.MbDevelopment.Greenmaster.Models.Arboretum.PlantTypes;
 
-public abstract class PlantType<T> : PlantUseBase<T> where T : Specie
+public abstract class PlantType : PlantUseBase
 {
-    public PlantType(T specie) : base(specie)
+    private PlantThresholds Thresholds { get; set; } = null!;
+
+    public PlantType(Specie specie) : base(specie)
     {
     }
+    
+    
 }

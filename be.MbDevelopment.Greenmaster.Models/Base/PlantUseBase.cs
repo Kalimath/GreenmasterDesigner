@@ -2,11 +2,11 @@
 
 namespace be.MbDevelopment.Greenmaster.Models.Base;
 
-public abstract class PlantUseBase<T> where T : Specie
+public abstract class PlantUseBase
 {
-    public T? Specie { get; private set; }
+    public Specie Specie { get; private set; }
 
-    protected PlantUseBase(T specie)
+    protected PlantUseBase(Specie specie)
     {
         Specie = specie;
     }

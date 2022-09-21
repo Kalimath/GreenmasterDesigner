@@ -2,9 +2,9 @@
 
 namespace be.MbDevelopment.Greenmaster.Models.Arboretum.PlantTypes;
 
-public class Tree<T> : PlantType<T> where T : Specie
+public class Tree : PlantType 
 {
-    public Tree(T specie) : base(specie)
+    public Tree(Specie specie) : base(specie)
     {
     }
 }
