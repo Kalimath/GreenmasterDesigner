@@ -23,7 +23,7 @@ public class PlantTypeShould
         _metricHeight = 2.2;
         _metricDiameter = 0.6;
         _hedgeable = true;
-        _lifecycle = Lifecycle.Annual;
+        _lifecycle = Lifecycle.Perennial;
         _ValidTreeName = "Fraxinus excelsior";
         _notTreeEnumVDictionary = new EnumVDictionary<Language, string>
         {
@@ -50,7 +50,7 @@ public class PlantTypeShould
     [Fact]
     public void CreatePlantTypeWhenSpecieMeetsThresholds()
     {
-        //TODO: when checking what matches if false exception should be thrown with explanation
+        //TODO: when checking what matches: if false, exception should be thrown with explanations
         var validTree = new Tree(new Specie(_ValidTreeName,
             _treeEnumVDictionary,
             new PlantProperties(_hedgeable, _lifecycle),

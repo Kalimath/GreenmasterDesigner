@@ -5,7 +5,13 @@ namespace be.MbDevelopment.Greenmaster.Models.Arboretum.PlantTypes;
 
 public class Hedge : PlantType
 {
-    public Hedge(Specie specie) : base(specie, new PlantThresholds(Lifecycle.Perennial,metricHeightMax: 0.5,metricHeightMin: 0.25,metricDiameterMin: 1.2, hedgeable: true))
+    public Hedge(Specie specie) : base(specie, new PlantThresholds(true, 
+                                                Lifecycle.Perennial, 
+                                                0.5, 
+                                                0.25, 
+                                                1.2, 
+                                                1.2, 
+                                                true))
     {
     }
 }

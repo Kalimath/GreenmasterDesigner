@@ -22,7 +22,7 @@ public class PlantThresholdsShould
         _metricDiameterMax = 1.6;
         _hedgeable = true;
         _lifecycle = Lifecycle.Annual;
-        _validPlantThresholds = new PlantThresholds(_lifecycle, _metricHeightMax, _metricHeightMin,_metricDiameterMin,_metricDiameterMax, _hedgeable);
+        _validPlantThresholds = new PlantThresholds(true, _lifecycle, _metricHeightMax, _metricHeightMin,_metricDiameterMin,_metricDiameterMax, _hedgeable);
     }
 
     [Fact]

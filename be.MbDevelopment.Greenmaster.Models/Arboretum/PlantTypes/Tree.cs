@@ -5,7 +5,13 @@ namespace be.MbDevelopment.Greenmaster.Models.Arboretum.PlantTypes;
 
 public class Tree : PlantType 
 {
-    public Tree(Specie specie) : base(specie, new(Lifecycle.Perennial,metricHeightMax:150, metricDiameterMax:30, metricDiameterMin: 0.3,metricHeightMin: 0.25, hedgeable: default))
+    public Tree(Specie specie) : base(specie, new PlantThresholds(true, 
+        Lifecycle.Perennial, 
+        0, 
+        0.25, 
+        1.2, 
+        0, 
+        true))
     {
     }
 }

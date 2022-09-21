@@ -13,7 +13,6 @@ public abstract class PlantType : PlantUseBase
         Thresholds = thresholds;
         try
         {
-            
             if (!SpecieMeetsThresholds(specie))
             {
                 throw new ThresholdException(
@@ -22,7 +21,7 @@ public abstract class PlantType : PlantUseBase
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            Console.WriteLine(e.StackTrace);
             throw;
         }
     }
@@ -34,14 +33,22 @@ public abstract class PlantType : PlantUseBase
 
     private bool SpecieDimensionsMeetThreshold(Specie specie)
     {
-        bool res = false;
+        bool res = true;
         
-        var heightMeetsThreshold = Thresholds.MetricHeightMax >= specie.Dimensions.MetricHeight && Thresholds.MetricHeightMin <= specie.Dimensions.MetricHeight;
-        var diameterMeetsThreshold = Thresholds.MetricDiameterMax >= specie.Dimensions.MetricDiameter && Thresholds.MetricDiameterMin <= specie.Dimensions.MetricDiameter;
-        if (heightMeetsThreshold && diameterMeetsThreshold)
+        var metricHeight = specie.Dimensions.MetricHeight;
+        var metricDiameter = specie.Dimensions.MetricDiameter;
+        var zeroMeansAny = Thresholds.ZeroMeansNoRestriction;
+        bool heightMeetsThreshold = MeetsMaxThreshold(Thresholds.MetricHeightMax, metricHeight, zeroMeansAny) &&
+                                    MeetsMinThreshold(Thresholds.MetricHeightMin, metricHeight, zeroMeansAny);
+
+        bool diameterMeetsThreshold = MeetsMaxThreshold(Thresholds.MetricDiameterMax, metricDiameter, zeroMeansAny) &&
+                                      MeetsMinThreshold(Thresholds.MetricDiameterMin, metricDiameter, zeroMeansAny);
+
+        if (!heightMeetsThreshold || !diameterMeetsThreshold)
         {
-            res = true;
+            res = false;
         }
+
         return res;
     }
 
@@ -49,12 +56,22 @@ public abstract class PlantType : PlantUseBase
     {
         bool res = false;
         var specieProperties = specie.Properties;
-        
+
         if (specieProperties.Hedgeable == Thresholds.Hedgeable && specieProperties.Cycle == Thresholds.Cycle)
         {
             res = true;
         }
 
         return res;
+    }
+
+    public bool MeetsMaxThreshold(double threshold, double validatable, bool zeroMeansAny)
+    {
+        return (zeroMeansAny && threshold == 0) || validatable <= threshold;
+    }
+
+    public bool MeetsMinThreshold(double threshold, double validatable, bool zeroMeansAny)
+    {
+        return (zeroMeansAny && threshold == 0) || validatable >= threshold;
     }
 }

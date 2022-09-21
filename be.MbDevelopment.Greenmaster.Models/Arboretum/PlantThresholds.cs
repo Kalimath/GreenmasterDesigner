@@ -10,13 +10,15 @@ public class PlantThresholds
     public double MetricDiameterMin { get; set; }
     public double MetricDiameterMax { get; set; }
 
+    public bool ZeroMeansNoRestriction { get; }
     public bool Hedgeable { get; }
     public Lifecycle Cycle { get; }
-
-    public PlantThresholds(Lifecycle cycle, double metricHeightMax = default, double metricHeightMin = default,
-        double metricDiameterMin = default, double metricDiameterMax = default, bool hedgeable = default)
+    
+    public PlantThresholds(bool zeroMeansNoRestriction,Lifecycle cycle, double metricHeightMax, double metricHeightMin,
+        double metricDiameterMin, double metricDiameterMax, bool hedgeable)
     {
         Hedgeable = hedgeable;
+        ZeroMeansNoRestriction = zeroMeansNoRestriction;
         Cycle = cycle;
         MetricHeightMax = metricHeightMax;
         MetricHeightMin = metricHeightMin;
