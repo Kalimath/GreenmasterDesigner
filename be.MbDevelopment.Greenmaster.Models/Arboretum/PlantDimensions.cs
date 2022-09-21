@@ -36,4 +36,6 @@ public class PlantDimensions
         var metricValueArray = new[] { validMetricLength, validMetricWidth };
         this.MetricDiameter = metricValueArray.Average();
     }
+    
+    
 }
