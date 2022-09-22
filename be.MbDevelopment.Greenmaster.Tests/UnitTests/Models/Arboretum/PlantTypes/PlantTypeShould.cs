@@ -49,7 +49,7 @@ public class PlantTypeShould
     }
     
     [Fact]
-    public void CreatePlantTypeWhenSpecieMeetsThresholds()
+    public void CreatePlantTypeWhenSpecieIsValid()
     {
         //TODO: when checking what matches: if false, exception should be thrown with explanations
         var validTree = new TestPlantType(new Specie(_ValidTreeName,
@@ -58,6 +58,4 @@ public class PlantTypeShould
             new PlantDimensions(35, 22.5)));
         Assert.Equal(_ValidTreeName,validTree.Specie.ScientificName);
     }
-    
-    //TODO: move proper tests to ThresholdShould instead
 }
