@@ -5,7 +5,7 @@ using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
 using Xunit;
 
-namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Arboretum;
+namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Entities.Arboretum;
 
 public class PlantThresholdsShould
 {

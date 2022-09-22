@@ -1,13 +1,12 @@
 ﻿using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
 using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
-using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
 using be.MbDevelopment.Greenmaster.Tests.TestData;
 using Xunit;
 
-namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Arboretum.PlantTypes;
+namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Entities.Arboretum.PlantTypes;
 
 public class PlantTypeShould
 {

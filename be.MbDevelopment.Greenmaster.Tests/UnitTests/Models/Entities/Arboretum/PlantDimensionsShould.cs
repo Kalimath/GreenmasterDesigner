@@ -1,8 +1,7 @@
 ﻿using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
-using be.MbDevelopment.Greenmaster.Models.Exceptions;
 using Xunit;
 
-namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Arboretum;
+namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Entities.Arboretum;
 
 public class PlantDimensionsShould
 {
