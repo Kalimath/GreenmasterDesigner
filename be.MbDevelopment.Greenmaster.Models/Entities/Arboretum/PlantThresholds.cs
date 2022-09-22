@@ -61,23 +61,34 @@ public class PlantThresholds
 
     private bool SpecieDimensionsMeetThreshold(Specie specie)
     {
-        bool res = true;
-
-        var metricHeight = specie.Dimensions.MetricHeight;
-        var metricDiameter = specie.Dimensions.MetricDiameter;
-
-        bool heightMeetsThreshold = MeetsMaxThreshold(MetricHeightMax, metricHeight) &&
-                                    MeetsMinThreshold(MetricHeightMin, metricHeight);
-
-        bool diameterMeetsThreshold = MeetsMaxThreshold(MetricDiameterMax, metricDiameter) &&
-                                      MeetsMinThreshold(MetricDiameterMin, metricDiameter);
-
+        var res = true;
+        var heightMeetsThreshold = HeightMeetsThreshold(specie.Dimensions.MetricHeight);
+        var diameterMeetsThreshold = DiameterMeetsThreshold(specie.Dimensions.MetricDiameter);
+        
         if (!heightMeetsThreshold || !diameterMeetsThreshold)
-        {
             res = false;
-        }
 
         return res;
+    }
+
+    private bool DiameterMeetsThreshold(double metricDiameter)
+    {
+        var diameterMeetsThreshold = MeetsMaxThreshold(MetricDiameterMax, metricDiameter) &&
+                                     MeetsMinThreshold(MetricDiameterMin, metricDiameter);
+        if (!diameterMeetsThreshold)
+            throw new InvalidRangeException(
+                $"Specie's diameter doesn't meet requirements. Min: {MetricDiameterMin} Max: {MetricDiameterMax} Actual: {metricDiameter}");
+        return diameterMeetsThreshold;
+    }
+
+    private bool HeightMeetsThreshold(double metricHeight)
+    {
+        var heightMeetsThreshold = MeetsMaxThreshold(MetricHeightMax, metricHeight) &&
+                                   MeetsMinThreshold(MetricHeightMin, metricHeight);
+        if (!heightMeetsThreshold)
+            throw new InvalidRangeException(
+                $"Specie's height doesn't meet requirements. Min: {MetricHeightMin} Max: {MetricHeightMax} Actual: {metricHeight}");
+        return heightMeetsThreshold;
     }
 
     private bool SpeciePropertiesMeetThreshold(Specie specie)

@@ -6,9 +6,9 @@ public class GroundCover : PlantType
 {
     public GroundCover(Specie specie) : base(specie, new PlantThresholds(true, 
         Lifecycle.NotSpecified, 
-        1.5, 
+        0.5, 
         0.05, 
-        0, 
+        0.2, 
         0, 
         true))
     {

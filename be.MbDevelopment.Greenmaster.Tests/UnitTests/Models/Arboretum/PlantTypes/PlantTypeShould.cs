@@ -55,7 +55,7 @@ public class PlantTypeShould
         var validTree = new TestPlantType(new Specie(_ValidTreeName,
             _treeEnumVDictionary,
             new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
-            new PlantDimensions(35, 22.5)));
+            new PlantDimensions(3, 2)));
         Assert.Equal(_ValidTreeName,validTree.Specie.ScientificName);
     }
 }

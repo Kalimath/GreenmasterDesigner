@@ -8,10 +8,10 @@ public class TestPlantType : PlantType
 {
     public TestPlantType(Specie specie) : base(specie, new PlantThresholds(true, 
         Lifecycle.NotSpecified, 
-        0, 
+        12, 
         0.25, 
         1.2, 
-        0, 
+        12, 
         true))
     {
     }

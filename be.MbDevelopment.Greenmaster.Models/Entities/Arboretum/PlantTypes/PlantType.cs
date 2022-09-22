@@ -21,7 +21,8 @@ public abstract class PlantType : PlantUseBase
         catch (Exception e)
         {
             Console.WriteLine(e.StackTrace);
-            throw;
+            throw new ThresholdException(
+                $"Specie \"{specie.ScientificName}\" does not meet requirements to be a {this.GetType().Name.ToLower()}.");
         }
     }
 }
