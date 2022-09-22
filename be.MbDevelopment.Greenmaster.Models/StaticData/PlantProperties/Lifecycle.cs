@@ -5,5 +5,5 @@ public enum Lifecycle
     Annual=0,
     Perennial=1,
     Biennial=2,
-    Other=3
+    NotSpecified=3
 }

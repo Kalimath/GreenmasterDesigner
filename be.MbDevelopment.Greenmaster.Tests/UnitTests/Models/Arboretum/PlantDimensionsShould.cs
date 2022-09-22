@@ -1,4 +1,4 @@
-﻿using be.MbDevelopment.Greenmaster.Models.Arboretum;
+﻿using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 using Xunit;
 

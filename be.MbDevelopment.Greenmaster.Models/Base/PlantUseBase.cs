@@ -1,4 +1,4 @@
-﻿using be.MbDevelopment.Greenmaster.Models.Arboretum;
+﻿using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
 namespace be.MbDevelopment.Greenmaster.Models.Base;
 

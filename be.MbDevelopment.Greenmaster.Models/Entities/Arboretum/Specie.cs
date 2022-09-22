@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
+using be.MbDevelopment.Greenmaster.Models.Base;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 
-namespace be.MbDevelopment.Greenmaster.Models.Arboretum;
+namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
-public class Specie
+public class Specie : BaseAuditableEntity
 {
     [MinLength(3)] [MaxLength(20)] public string ScientificName { get; private set; }
 

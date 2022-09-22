@@ -1,6 +1,6 @@
 ﻿using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
 
-namespace be.MbDevelopment.Greenmaster.Models.Arboretum;
+namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
 public class PlantProperties
 {

@@ -1,9 +1,10 @@
 ﻿using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
-using be.MbDevelopment.Greenmaster.Models.Arboretum;
-using be.MbDevelopment.Greenmaster.Models.Arboretum.PlantTypes;
+using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
+using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
+using be.MbDevelopment.Greenmaster.Tests.TestData;
 using Xunit;
 
 namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Arboretum.PlantTypes;
@@ -40,7 +41,7 @@ public class PlantTypeShould
     {
         Assert.Throws<ThresholdException>(() =>
         {
-            var invalidTree = new Tree(new Specie("Strelitzia Reginae",
+            var invalidTree = new TestPlantType(new Specie("Strelitzia Reginae",
                 _notTreeEnumVDictionary,
                 new PlantProperties(_hedgeable, _lifecycle),
                 new PlantDimensions(_metricHeight, _metricDiameter)));
@@ -51,10 +52,12 @@ public class PlantTypeShould
     public void CreatePlantTypeWhenSpecieMeetsThresholds()
     {
         //TODO: when checking what matches: if false, exception should be thrown with explanations
-        var validTree = new Tree(new Specie(_ValidTreeName,
+        var validTree = new TestPlantType(new Specie(_ValidTreeName,
             _treeEnumVDictionary,
-            new PlantProperties(_hedgeable, _lifecycle),
+            new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
             new PlantDimensions(35, 22.5)));
         Assert.Equal(_ValidTreeName,validTree.Specie.ScientificName);
     }
+    
+    //TODO: move proper tests to ThresholdShould instead
 }

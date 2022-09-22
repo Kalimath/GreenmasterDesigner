@@ -1,8 +1,7 @@
-﻿using System.Diagnostics;
-using be.MbDevelopment.Greenmaster.Models.Base;
+﻿using be.MbDevelopment.Greenmaster.Models.Base;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 
-namespace be.MbDevelopment.Greenmaster.Models.Arboretum.PlantTypes;
+namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
 
 public abstract class PlantType : PlantUseBase
 {

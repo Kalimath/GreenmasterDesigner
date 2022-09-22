@@ -1,5 +1,5 @@
 ﻿using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
-using be.MbDevelopment.Greenmaster.Models.Arboretum;
+using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;

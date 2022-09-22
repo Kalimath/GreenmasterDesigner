@@ -1,7 +1,6 @@
-﻿using be.MbDevelopment.Greenmaster.Models.Base;
-using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
+﻿using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
 
-namespace be.MbDevelopment.Greenmaster.Models.Arboretum.PlantTypes;
+namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
 
 public class Hedge : PlantType
 {

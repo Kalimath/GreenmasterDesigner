@@ -1,5 +1,10 @@
-﻿using be.MbDevelopment.Greenmaster.Models.Arboretum;
+﻿using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
+using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
+using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
+using be.MbDevelopment.Greenmaster.Models.Exceptions;
+using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
+using be.MbDevelopment.Greenmaster.Tests.TestData;
 using Xunit;
 
 namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Arboretum;
@@ -46,6 +51,18 @@ public class PlantThresholdsShould
         Assert.Equal(_lifecycle, _validPlantThresholds.Cycle);
     }
     
-    //TODO: test that min is smaller than max
-    
+    [Fact]
+    public void IgnoreLifecycleWhenNotSpecified()
+    {
+        throw new NotImplementedException();
+    }
+    [Fact]
+    public void ThrowThresholdExceptionWhenMinHigherThanMax()
+    {
+        Assert.Throws<ThresholdException>(() =>
+        {
+            //TODO
+        });
+    }
 }
+
