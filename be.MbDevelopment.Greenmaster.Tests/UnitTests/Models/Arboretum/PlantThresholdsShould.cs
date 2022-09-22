@@ -58,13 +58,30 @@ public class PlantThresholdsShould
         Assert.Equal(_hedgeable, _validPlantThresholds.Hedgeable);
         Assert.Equal(_notSpecifiedCycle, _validPlantThresholds.Cycle);
     }
-
+    
     [Fact]
     public void IgnoreLifecycleWhenNotSpecified()
     {
         Assert.True(_validPlantThresholds.SpecieMeetsThresholds(_specie));
     }
 
+    [Fact]
+    public void ThrowInvalidRangeExceptionWhenMinIsZeroInCtor()
+    {
+        Assert.Throws<InvalidRangeException>(() =>
+        {
+            var invalidMinPlantThresholds = new PlantThresholds(true, _notSpecifiedCycle, _metricHeightMax,
+                _metricHeightMin,
+                0, _metricDiameterMax, _hedgeable);
+        });
+        Assert.Throws<InvalidRangeException>(() =>
+        {
+            var invalidMinPlantThresholds = new PlantThresholds(true, _notSpecifiedCycle, _metricHeightMax,
+                0,
+                _metricDiameterMin, _metricDiameterMax, _hedgeable);
+        });
+    }
+    
     [Fact]
     public void ThrowInvalidRangeExceptionWhenMinHigherThanMaxInCtor()
     {
@@ -73,6 +90,17 @@ public class PlantThresholdsShould
             var invalidMinPlantThresholds = new PlantThresholds(true, _notSpecifiedCycle, _metricHeightMax,
                 _metricHeightMin + 55,
                 _metricDiameterMin+55, _metricDiameterMax, _hedgeable);
+        });
+    }
+    
+    [Fact]
+    public void ThrowInvalidRangeExceptionWhenMinIsNegativeInCtor()
+    {
+        Assert.Throws<InvalidRangeException>(() =>
+        {
+            var invalidMinPlantThresholds = new PlantThresholds(true, _notSpecifiedCycle, _metricHeightMax,
+                _metricHeightMin-55,
+                _metricDiameterMin-55, _metricDiameterMax, _hedgeable);
         });
     }
 }

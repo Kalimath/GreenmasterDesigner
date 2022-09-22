@@ -34,7 +34,7 @@ public class PlantThresholds
 
     private void SetDiameterMinMax(double metricDiameterMin, double metricDiameterMax)
     {
-        if (metricDiameterMin >= 0 && metricDiameterMin <= metricDiameterMax)
+        if (metricDiameterMin > 0 && metricDiameterMin <= metricDiameterMax)
         {
             MetricDiameterMin = metricDiameterMin;
             MetricDiameterMax = metricDiameterMax;
@@ -45,7 +45,7 @@ public class PlantThresholds
 
     private void SetHeightMinMax(double metricHeightMin, double metricHeightMax)
     {
-        if (metricHeightMin >= 0 && metricHeightMin <= metricHeightMax)
+        if (metricHeightMin > 0 && metricHeightMin <= metricHeightMax)
         {
             MetricHeightMax = metricHeightMax;
             MetricHeightMin = metricHeightMin;
