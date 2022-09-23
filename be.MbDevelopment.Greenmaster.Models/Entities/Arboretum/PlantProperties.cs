@@ -1,16 +1,24 @@
-﻿using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
+﻿using be.MbDevelopment.Greenmaster.Models.StaticData;
+using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
 public class PlantProperties
 {
-    public PlantProperties(bool hedgeable, Lifecycle cycle)
+    public PlantProperties(bool isHedgeable, bool isMultiSeasonInterest,
+        LeafColors leafColors, FloweringInfo floweringInfo, Lifecycle cycle, AttentionLevel maintenanceLevel = AttentionLevel.Average)
     {
-        Hedgeable = hedgeable;
+        IsHedgeable = isHedgeable;
+        IsMultiSeasonInterest = isMultiSeasonInterest;
+        MaintenanceLevel = maintenanceLevel;
+        LeafColors = leafColors;
         Cycle = cycle;
     }
 
-    public bool Hedgeable { get; }
+    public bool IsHedgeable { get; }
+    public bool IsMultiSeasonInterest { get; }
+    public AttentionLevel MaintenanceLevel { get; }
+    public LeafColors LeafColors { get; }
     public Lifecycle Cycle { get; }
 
     public static IEqualityComparer<PlantProperties> PlantPropertiesComparer { get; } =
@@ -24,12 +32,12 @@ public class PlantProperties
             if (ReferenceEquals(x, null)) return false;
             if (ReferenceEquals(y, null)) return false;
             if (x.GetType() != y.GetType()) return false;
-            return x.Hedgeable == y.Hedgeable && x.Cycle == y.Cycle;
+            return x.IsHedgeable == y.IsHedgeable && x.Cycle == y.Cycle;
         }
 
         public int GetHashCode(PlantProperties obj)
         {
-            return HashCode.Combine(obj.Hedgeable, (int)obj.Cycle);
+            return HashCode.Combine(obj.IsHedgeable, (int)obj.Cycle);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace be.MbDevelopment.Greenmaster.Models.StaticData;
+﻿namespace be.MbDevelopment.Greenmaster.Models.StaticData.Time;
 
 public enum Frequency
 {

@@ -100,7 +100,7 @@ public class PlantThresholds
         var res = false;
         var specieProperties = specie.Properties;
 
-        if (specieProperties.Hedgeable == Hedgeable)
+        if (specieProperties.IsHedgeable == Hedgeable)
             if (Cycle == Lifecycle.NotSpecified || specieProperties.Cycle == Cycle)
                 res = true;
 

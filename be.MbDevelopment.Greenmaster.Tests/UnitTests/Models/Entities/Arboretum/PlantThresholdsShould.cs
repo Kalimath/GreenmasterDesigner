@@ -3,6 +3,7 @@ using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
+using be.MbDevelopment.Greenmaster.Models.StaticData.Time;
 using Xunit;
 
 namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Entities.Arboretum;
@@ -18,6 +19,8 @@ public class PlantThresholdsShould
     private readonly Lifecycle _notSpecifiedCycle;
     private readonly Specie _specie;
     private readonly PlantThresholds _validPlantThresholds;
+    private readonly PlantProperties _plantProperties;
+    private readonly Month[] _validFloweringPeriod;
 
 
     public PlantThresholdsShould()
@@ -32,8 +35,16 @@ public class PlantThresholdsShould
 
         _validPlantThresholds = new PlantThresholds(true, _notSpecifiedCycle, _metricHeightMax, _metricHeightMin,
             _metricDiameterMin, _metricDiameterMax, _hedgeable);
+        _validFloweringPeriod = new[]
+        {
+            Month.June, Month.July, Month.August
+        };
+        _plantProperties = new PlantProperties(isHedgeable: true,
+            isMultiSeasonInterest: true, leafColors: new LeafColors(summer: Color.Green, autumn: Color.Green),
+            floweringInfo: new FloweringInfo(false, new[] { Color.Blue, Color.Orange }, _validFloweringPeriod),
+            cycle: Lifecycle.Perennial);
         _specie = new Specie(new PlantNaming("Buxus", "Sempervirens", new EnumVDictionary<Language, string>()),
-            new PlantProperties(true, _annualLifecycle),
+            _plantProperties,
             new PlantDimensions(_metricHeightMin, _metricDiameterMin));
     }
 

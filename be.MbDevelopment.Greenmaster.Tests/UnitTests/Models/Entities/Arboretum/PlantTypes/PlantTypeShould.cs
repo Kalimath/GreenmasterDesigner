@@ -4,6 +4,7 @@ using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
+using be.MbDevelopment.Greenmaster.Models.StaticData.Time;
 using be.MbDevelopment.Greenmaster.Tests.TestData;
 using Xunit;
 
@@ -21,6 +22,8 @@ public class PlantTypeShould
     private readonly PlantNaming _notTreeplantNaming;
     private readonly string _treeGenus;
     private readonly string _treeSpecie;
+    private PlantProperties _plantProperties;
+    private Month[] _validFloweringPeriod;
 
     public PlantTypeShould()
     {
@@ -40,6 +43,14 @@ public class PlantTypeShould
         };
         _notTreeplantNaming = new PlantNaming("Buxus", "Sempervirens", _notTreeEnumVDictionary);
         _treeplantNaming = new PlantNaming(_treeGenus, _treeSpecie, _treeEnumVDictionary);
+        _validFloweringPeriod = new[]
+        {
+            Month.June, Month.July, Month.August
+        };
+        _plantProperties = new PlantProperties(isHedgeable: true,
+            isMultiSeasonInterest: true, leafColors: new LeafColors(summer: Color.Green, autumn: Color.Green),
+            floweringInfo: new FloweringInfo(false, new[] { Color.Blue, Color.Orange }, _validFloweringPeriod),
+            cycle: Lifecycle.Perennial);
     }
 
     [Fact]
@@ -48,7 +59,7 @@ public class PlantTypeShould
         Assert.Throws<ThresholdException>(() =>
         {
             var invalidTree = new TestPlantType(new Specie(_notTreeplantNaming,
-                new PlantProperties(_hedgeable, _lifecycle),
+                _plantProperties,
                 new PlantDimensions(_metricHeight, _metricDiameter)));
         });
     }
@@ -58,7 +69,7 @@ public class PlantTypeShould
     {
         var treeScientificName = $"{_treeGenus} {_treeSpecie}";
         var testPlantType = new TestPlantType(new Specie(new PlantNaming(_treeGenus, _treeSpecie, _treeEnumVDictionary),
-            new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
+            _plantProperties,
             new PlantDimensions(3, 2)));
         Assert.Equal(treeScientificName, testPlantType.Specie.Naming.GetScientificName());
     }
@@ -67,7 +78,7 @@ public class PlantTypeShould
     public void SetLocationToNullWhenNotPassedInCtor()
     {
         var testPlantType = new TestPlantType(new Specie(_treeplantNaming,
-            new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
+            _plantProperties,
             new PlantDimensions(3, 2)));
         Assert.Null(testPlantType.Location);
     }
@@ -77,7 +88,7 @@ public class PlantTypeShould
     {
         var testLocation = new Position(55.44, 44.55, 0.5);
         var testPlantType = new TestPlantType(new Specie(_treeplantNaming,
-            new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
+            _plantProperties,
             new PlantDimensions(3, 2)), testLocation);
         Assert.Equal(testLocation, testPlantType.Location);
     }

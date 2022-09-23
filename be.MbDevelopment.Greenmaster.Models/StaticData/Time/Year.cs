@@ -1,4 +1,4 @@
-﻿namespace be.MbDevelopment.Greenmaster.Models.StaticData.Durations;
+﻿namespace be.MbDevelopment.Greenmaster.Models.StaticData.Time;
 
 public class Year
 {

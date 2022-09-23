@@ -2,6 +2,7 @@
 using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
+using be.MbDevelopment.Greenmaster.Models.StaticData.Time;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -18,6 +19,7 @@ public class SpecieShould
     private readonly PlantProperties _validPlantProperties;
     private readonly string _validSpecieName;
     private readonly PlantNaming _validPlantNaming;
+    private Month[] _validFloweringPeriod;
 
     public SpecieShould(ITestOutputHelper testOutputHelper)
     {
@@ -29,7 +31,14 @@ public class SpecieShould
         _validCommonNames = new EnumVDictionary<Language, string>();
         _validCommonNames[Language.Nl.ToString()] = _validCommonNameNl;
         _validPlantNaming = new PlantNaming(_validGenusName, _validSpecieName, _validCommonNames);
-        _validPlantProperties = new PlantProperties(false, Lifecycle.Annual);
+        _validFloweringPeriod = new[]
+        {
+            Month.June, Month.July, Month.August
+        };
+        _validPlantProperties = new PlantProperties(isHedgeable: true,
+            isMultiSeasonInterest: true, leafColors: new LeafColors(summer: Color.Green, autumn: Color.Green),
+            floweringInfo: new FloweringInfo(false, new[] { Color.Blue, Color.Orange }, _validFloweringPeriod),
+            cycle: Lifecycle.Perennial);
     }
 
     [Fact]
