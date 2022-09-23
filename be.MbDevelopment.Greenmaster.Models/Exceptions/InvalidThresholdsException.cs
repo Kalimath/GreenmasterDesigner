@@ -1,4 +1,5 @@
 ﻿namespace be.MbDevelopment.Greenmaster.Models.Exceptions;
+
 public class InvalidThresholdsException : ThresholdException
 {
     public InvalidThresholdsException()

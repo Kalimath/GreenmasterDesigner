@@ -9,16 +9,16 @@ namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Entities.Arboretum
 
 public class PlantThresholdsShould
 {
-    private readonly PlantThresholds _validPlantThresholds;
-    private readonly double _metricHeightMin;
-    private readonly double _metricDiameterMin;
-    private readonly bool _hedgeable;
     private readonly Lifecycle _annualLifecycle;
-    private readonly double _metricHeightMax;
+    private readonly bool _hedgeable;
     private readonly double _metricDiameterMax;
-    private readonly Specie _specie;
+    private readonly double _metricDiameterMin;
+    private readonly double _metricHeightMax;
+    private readonly double _metricHeightMin;
     private readonly Lifecycle _notSpecifiedCycle;
-    
+    private readonly Specie _specie;
+    private readonly PlantThresholds _validPlantThresholds;
+
 
     public PlantThresholdsShould()
     {
@@ -29,10 +29,11 @@ public class PlantThresholdsShould
         _hedgeable = true;
         _annualLifecycle = Lifecycle.Annual;
         _notSpecifiedCycle = Lifecycle.NotSpecified;
-        
+
         _validPlantThresholds = new PlantThresholds(true, _notSpecifiedCycle, _metricHeightMax, _metricHeightMin,
             _metricDiameterMin, _metricDiameterMax, _hedgeable);
-        _specie = new Specie(new PlantNaming("Buxus", "Sempervirens", new EnumVDictionary<Language, string>()), new PlantProperties(true, _annualLifecycle),
+        _specie = new Specie(new PlantNaming("Buxus", "Sempervirens", new EnumVDictionary<Language, string>()),
+            new PlantProperties(true, _annualLifecycle),
             new PlantDimensions(_metricHeightMin, _metricDiameterMin));
     }
 
@@ -58,7 +59,7 @@ public class PlantThresholdsShould
         Assert.Equal(_hedgeable, _validPlantThresholds.Hedgeable);
         Assert.Equal(_notSpecifiedCycle, _validPlantThresholds.Cycle);
     }
-    
+
     [Fact]
     public void IgnoreLifecycleWhenNotSpecified()
     {
@@ -81,7 +82,7 @@ public class PlantThresholdsShould
                 _metricDiameterMin, _metricDiameterMax, _hedgeable);
         });
     }
-    
+
     [Fact]
     public void ThrowInvalidRangeExceptionWhenMinHigherThanMaxInCtor()
     {
@@ -89,18 +90,18 @@ public class PlantThresholdsShould
         {
             var invalidMinPlantThresholds = new PlantThresholds(true, _notSpecifiedCycle, _metricHeightMax,
                 _metricHeightMin + 55,
-                _metricDiameterMin+55, _metricDiameterMax, _hedgeable);
+                _metricDiameterMin + 55, _metricDiameterMax, _hedgeable);
         });
     }
-    
+
     [Fact]
     public void ThrowInvalidRangeExceptionWhenMinIsNegativeInCtor()
     {
         Assert.Throws<InvalidRangeException>(() =>
         {
             var invalidMinPlantThresholds = new PlantThresholds(true, _notSpecifiedCycle, _metricHeightMax,
-                _metricHeightMin-55,
-                _metricDiameterMin-55, _metricDiameterMax, _hedgeable);
+                _metricHeightMin - 55,
+                _metricDiameterMin - 55, _metricDiameterMax, _hedgeable);
         });
     }
 }

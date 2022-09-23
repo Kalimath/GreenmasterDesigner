@@ -4,16 +4,17 @@ namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
 public class PlantProperties
 {
-    public bool Hedgeable { get; }
-    public Lifecycle Cycle { get; }
-    
-
     public PlantProperties(bool hedgeable, Lifecycle cycle)
     {
         Hedgeable = hedgeable;
         Cycle = cycle;
-
     }
+
+    public bool Hedgeable { get; }
+    public Lifecycle Cycle { get; }
+
+    public static IEqualityComparer<PlantProperties> PlantPropertiesComparer { get; } =
+        new PlantPropertiesEqualityComparer();
 
     private sealed class PlantPropertiesEqualityComparer : IEqualityComparer<PlantProperties>
     {
@@ -31,6 +32,4 @@ public class PlantProperties
             return HashCode.Combine(obj.Hedgeable, (int)obj.Cycle);
         }
     }
-
-    public static IEqualityComparer<PlantProperties> PlantPropertiesComparer { get; } = new PlantPropertiesEqualityComparer();
 }

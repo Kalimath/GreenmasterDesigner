@@ -5,14 +5,13 @@ namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Entities.Arboretum
 
 public class PlantDimensionsShould
 {
+    private readonly double _validMetricDiameter;
+
+    private readonly double _validMetricHeight;
     private readonly double _validMetricLength;
     private readonly double _validMetricWidth;
     private readonly PlantDimensions _validPlantDimensions;
 
-    private readonly double _validMetricHeight;
-
-    private readonly double _validMetricDiameter;
-    
 
     //TODO: test voor het omzetten van l & b naar diameter
 
@@ -31,22 +30,23 @@ public class PlantDimensionsShould
         Assert.Throws<ArgumentOutOfRangeException>(() => new PlantDimensions(0, _validMetricDiameter));
         Assert.Throws<ArgumentOutOfRangeException>(() => new PlantDimensions(-1.67, _validMetricDiameter));
     }
-    
+
     [Fact]
     public void SetMetricHeightWhenHeightGreaterThanZero()
     {
-        Assert.Equal(_validMetricHeight,_validPlantDimensions.MetricHeight);
+        Assert.Equal(_validMetricHeight, _validPlantDimensions.MetricHeight);
     }
+
     [Fact]
     public void SetMetricDiameterWhenHeightGreaterThanZero()
     {
-        Assert.Equal(_validMetricDiameter,_validPlantDimensions.MetricDiameter);
+        Assert.Equal(_validMetricDiameter, _validPlantDimensions.MetricDiameter);
     }
-    
+
     [Fact]
     public void SetMetricDiameterWhenConvertToMetricDiameterIsCalledWithValidParams()
     {
         _validPlantDimensions.ConvertToMetricDiameter(_validMetricLength, _validMetricWidth);
-        Assert.Equal(2.5,_validPlantDimensions.MetricDiameter);
+        Assert.Equal(2.5, _validPlantDimensions.MetricDiameter);
     }
 }

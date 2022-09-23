@@ -5,14 +5,6 @@ namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
 public class PlantThresholds
 {
-    public double MetricHeightMax { get; set; }
-    public double MetricHeightMin { get; set; }
-    public double MetricDiameterMin { get; set; }
-    public double MetricDiameterMax { get; set; }
-    public bool ZeroMeansAny { get; }
-    public bool Hedgeable { get; }
-    public Lifecycle Cycle { get; }
-
     // ReSharper disable once TooManyDependencies
     public PlantThresholds(bool zeroMeansAny, Lifecycle cycle, double metricHeightMax, double metricHeightMin,
         double metricDiameterMin, double metricDiameterMax, bool hedgeable)
@@ -32,6 +24,14 @@ public class PlantThresholds
         }
     }
 
+    public double MetricHeightMax { get; set; }
+    public double MetricHeightMin { get; set; }
+    public double MetricDiameterMin { get; set; }
+    public double MetricDiameterMax { get; set; }
+    public bool ZeroMeansAny { get; }
+    public bool Hedgeable { get; }
+    public Lifecycle Cycle { get; }
+
     private void SetDiameterMinMax(double metricDiameterMin, double metricDiameterMax)
     {
         if (metricDiameterMin > 0 && metricDiameterMin <= metricDiameterMax)
@@ -40,7 +40,9 @@ public class PlantThresholds
             MetricDiameterMax = metricDiameterMax;
         }
         else
+        {
             throw new InvalidRangeException("minDiameter can't be lower than zero or higher than maxDiameter");
+        }
     }
 
     private void SetHeightMinMax(double metricHeightMin, double metricHeightMax)
@@ -51,7 +53,9 @@ public class PlantThresholds
             MetricHeightMin = metricHeightMin;
         }
         else
+        {
             throw new InvalidRangeException("minHeight can't be lower than zero or higher than maxHeight");
+        }
     }
 
     public bool SpecieMeetsThresholds(Specie specie)
@@ -64,7 +68,7 @@ public class PlantThresholds
         var res = true;
         var heightMeetsThreshold = HeightMeetsThreshold(specie.Dimensions.MetricHeight);
         var diameterMeetsThreshold = DiameterMeetsThreshold(specie.Dimensions.MetricDiameter);
-        
+
         if (!heightMeetsThreshold || !diameterMeetsThreshold)
             res = false;
 
@@ -93,14 +97,12 @@ public class PlantThresholds
 
     private bool SpeciePropertiesMeetThreshold(Specie specie)
     {
-        bool res = false;
+        var res = false;
         var specieProperties = specie.Properties;
 
         if (specieProperties.Hedgeable == Hedgeable)
-        {
             if (Cycle == Lifecycle.NotSpecified || specieProperties.Cycle == Cycle)
                 res = true;
-        }
 
         return res;
     }

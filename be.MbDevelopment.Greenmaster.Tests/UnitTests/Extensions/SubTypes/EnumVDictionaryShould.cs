@@ -28,7 +28,7 @@ public class EnumDirectoryShould
     public void SetValueToNullWhenRemoveIsCalled()
     {
         var createdDir = new EnumVDictionary<TestEnum, string> { { TestEnum.Tester, _testValue } };
-        createdDir.Remove(eKey: TestEnum.Tester);
+        createdDir.Remove(TestEnum.Tester);
         Assert.Null(createdDir[TestEnum.Tester.ToString()]);
     }
 
@@ -40,7 +40,7 @@ public class EnumDirectoryShould
         Assert.Equal(_testValue, _validEnumVDictionary[TestEnum.Tester.ToString()]);
         Assert.Null(_validEnumVDictionary[TestEnum.Testing.ToString()]);
     }
-    
+
     /*[Fact]
     public void ReturnTrueWhenContainsKey()
     {
@@ -64,7 +64,4 @@ public class EnumDirectoryShould
     {
         throw new NotImplementedException();
     }*/
-
-   
-    
 }

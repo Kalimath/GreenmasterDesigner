@@ -1,21 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
-using be.MbDevelopment.Greenmaster.Models.Base;
-using be.MbDevelopment.Greenmaster.Models.StaticData;
+﻿using be.MbDevelopment.Greenmaster.Models.Base;
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
 public class Specie : BaseAuditableEntity
 {
-    public PlantNaming Naming { get; }
-    public PlantProperties Properties { get; set; }
-    public PlantDimensions Dimensions { get; }
-
     public Specie(PlantNaming naming, PlantProperties properties, PlantDimensions dimensions)
     {
-        
         try
-        { 
+        {
             Naming = naming;
             Properties = properties;
             Dimensions = dimensions;
@@ -26,4 +18,8 @@ public class Specie : BaseAuditableEntity
             throw;
         }
     }
+
+    public PlantNaming Naming { get; }
+    public PlantProperties Properties { get; set; }
+    public PlantDimensions Dimensions { get; }
 }

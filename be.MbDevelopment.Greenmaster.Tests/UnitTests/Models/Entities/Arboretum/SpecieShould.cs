@@ -2,7 +2,6 @@
 using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
-using JetBrains.Annotations;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -10,15 +9,15 @@ namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Entities.Arboretum
 
 public class SpecieShould
 {
+    private readonly Language _language = Language.Nl;
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly string _validCommonNameNl;
-    private readonly string _validGenusName;
-    private readonly string _validSpecieName;
     private readonly EnumVDictionary<Language, string> _validCommonNames;
-    private readonly PlantProperties _validPlantProperties;
+    private readonly string _validGenusName;
     private readonly PlantDimensions _validPlantDimensions;
-    private readonly Language _language = Language.Nl;
-    private PlantNaming _validPlantNaming;
+    private readonly PlantProperties _validPlantProperties;
+    private readonly string _validSpecieName;
+    private readonly PlantNaming _validPlantNaming;
 
     public SpecieShould(ITestOutputHelper testOutputHelper)
     {
@@ -37,7 +36,7 @@ public class SpecieShould
     public void SetNamingCorrectlyWhenNotNullOrEmpty()
     {
         var validScientificName = "Strelitzia Reginae";
-        Specie validSpecie = new Specie(_validPlantNaming, _validPlantProperties, _validPlantDimensions);
+        var validSpecie = new Specie(_validPlantNaming, _validPlantProperties, _validPlantDimensions);
         Assert.Equal(validScientificName, validSpecie.Naming.GetScientificName());
     }
 

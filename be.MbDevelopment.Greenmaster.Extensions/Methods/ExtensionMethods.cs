@@ -1,6 +1,4 @@
-﻿using JetBrains.Annotations;
-
-namespace be.MbDevelopment.Greenmaster.Extensions.Methods;
+﻿namespace be.MbDevelopment.Greenmaster.Extensions.Methods;
 
 public static class ExtensionMethods
 {
@@ -9,5 +7,4 @@ public static class ExtensionMethods
     {
         return string.IsNullOrWhiteSpace(validatable) ? throw new ArgumentException("Given string is not valid") : true;
     }
-    
 }

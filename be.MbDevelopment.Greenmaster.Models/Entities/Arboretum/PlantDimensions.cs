@@ -20,21 +20,19 @@ public class PlantDimensions
         }
     }
 
+    public double MetricHeight { get; }
+    public double MetricDiameter { get; private set; }
+
     private void ValidateMetricValue(double metricValue)
     {
         if (metricValue <= 0) throw new ArgumentOutOfRangeException(metricValue.ToString(CultureInfo.CurrentCulture));
     }
-
-    public double MetricHeight { get; private set; }
-    public double MetricDiameter { get; private set; }
 
     public void ConvertToMetricDiameter(double validMetricLength, double validMetricWidth)
     {
         ValidateMetricValue(validMetricLength);
         ValidateMetricValue(validMetricWidth);
         var metricValueArray = new[] { validMetricLength, validMetricWidth };
-        this.MetricDiameter = metricValueArray.Average();
+        MetricDiameter = metricValueArray.Average();
     }
-    
-    
 }
