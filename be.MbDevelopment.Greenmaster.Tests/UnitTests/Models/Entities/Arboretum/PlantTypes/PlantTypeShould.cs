@@ -1,4 +1,5 @@
 ﻿using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
+using be.MbDevelopment.Greenmaster.Models.Entities;
 using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
@@ -50,11 +51,31 @@ public class PlantTypeShould
     [Fact]
     public void CreatePlantTypeWhenSpecieIsValid()
     {
-        //TODO: when checking what matches: if false, exception should be thrown with explanations
-        var validTree = new TestPlantType(new Specie(_ValidTreeName,
+        var testPlantType = new TestPlantType(new Specie(_ValidTreeName,
             _treeEnumVDictionary,
             new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
             new PlantDimensions(3, 2)));
-        Assert.Equal(_ValidTreeName,validTree.Specie.ScientificName);
+        Assert.Equal(_ValidTreeName,testPlantType.Specie.ScientificName);
+    }
+
+    [Fact]
+    public void SetLocationToNullWhenNotPassedInCtor()
+    {
+        var testPlantType = new TestPlantType(new Specie(_ValidTreeName,
+            _treeEnumVDictionary,
+            new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
+            new PlantDimensions(3, 2)));
+        Assert.Null(testPlantType.Location);
+    }
+    
+    [Fact]
+    public void SetLocationToGivenWhenPassedInCtor()
+    {
+        var testLocation = new Position(55.44, 44.55, 0.5);
+        var testPlantType = new TestPlantType(new Specie(_ValidTreeName,
+            _treeEnumVDictionary,
+            new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
+            new PlantDimensions(3, 2)),testLocation);
+        Assert.Equal(testLocation, testPlantType.Location);
     }
 }

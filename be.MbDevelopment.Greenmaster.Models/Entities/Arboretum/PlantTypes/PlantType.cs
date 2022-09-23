@@ -3,11 +3,11 @@ using be.MbDevelopment.Greenmaster.Models.Exceptions;
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
 
-public abstract class PlantType : PlantUseBase
+public abstract class PlantType : PlantBase
 {
     private PlantThresholds Thresholds { get; set; }
 
-    public PlantType(Specie specie, PlantThresholds thresholds) : base(specie)
+    public PlantType(Specie specie, PlantThresholds thresholds, Position location = null!) : base(specie, location)
     {
         Thresholds = thresholds;
         try
