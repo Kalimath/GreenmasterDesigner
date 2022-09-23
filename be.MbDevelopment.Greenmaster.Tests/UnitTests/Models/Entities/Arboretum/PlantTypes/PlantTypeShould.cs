@@ -15,9 +15,12 @@ public class PlantTypeShould
     private readonly double _metricDiameter;
     private readonly bool _hedgeable;
     private readonly Lifecycle _lifecycle;
-    private EnumVDictionary<Language, string> _notTreeEnumVDictionary;
-    private EnumVDictionary<Language, string> _treeEnumVDictionary;
-    private string _ValidTreeName;
+    private readonly EnumVDictionary<Language, string> _notTreeEnumVDictionary;
+    private readonly EnumVDictionary<Language, string> _treeEnumVDictionary;
+    private PlantNaming _notTreeplantNaming;
+    private string _treeGenus;
+    private string _treeSpecie;
+    private readonly PlantNaming _treeplantNaming;
 
     public PlantTypeShould()
     {
@@ -25,15 +28,18 @@ public class PlantTypeShould
         _metricDiameter = 0.6;
         _hedgeable = true;
         _lifecycle = Lifecycle.Perennial;
-        _ValidTreeName = "Fraxinus excelsior";
+        _treeGenus = "Fraxinus";
+        _treeSpecie = "Excelsior";
         _notTreeEnumVDictionary = new EnumVDictionary<Language, string>
         {
-            [Language.Nl.ToString()] = "Paradijsvogelbloem"
+            [Language.Nl.ToString()] = "Gewone Buxus"
         };
         _treeEnumVDictionary = new EnumVDictionary<Language, string>
         {
             [Language.Nl.ToString()] = "Es"
         };
+        _notTreeplantNaming = new PlantNaming("Buxus", "Sempervirens", _notTreeEnumVDictionary);
+        _treeplantNaming = new PlantNaming(_treeGenus, _treeSpecie, _treeEnumVDictionary);
     }
 
     [Fact]
@@ -41,8 +47,8 @@ public class PlantTypeShould
     {
         Assert.Throws<ThresholdException>(() =>
         {
-            var invalidTree = new TestPlantType(new Specie("Strelitzia Reginae",
-                _notTreeEnumVDictionary,
+            
+            var invalidTree = new TestPlantType(new Specie(_notTreeplantNaming,
                 new PlantProperties(_hedgeable, _lifecycle),
                 new PlantDimensions(_metricHeight, _metricDiameter)));
         });
@@ -51,18 +57,17 @@ public class PlantTypeShould
     [Fact]
     public void CreatePlantTypeWhenSpecieIsValid()
     {
-        var testPlantType = new TestPlantType(new Specie(_ValidTreeName,
-            _treeEnumVDictionary,
+        var treeScientificName = $"{_treeGenus} {_treeSpecie}";
+        var testPlantType = new TestPlantType(new Specie(new PlantNaming(_treeGenus, _treeSpecie , _treeEnumVDictionary),
             new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
             new PlantDimensions(3, 2)));
-        Assert.Equal(_ValidTreeName,testPlantType.Specie.ScientificName);
+        Assert.Equal(treeScientificName,testPlantType.Specie.Naming.GetScientificName());
     }
 
     [Fact]
     public void SetLocationToNullWhenNotPassedInCtor()
     {
-        var testPlantType = new TestPlantType(new Specie(_ValidTreeName,
-            _treeEnumVDictionary,
+        var testPlantType = new TestPlantType(new Specie(_treeplantNaming,
             new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
             new PlantDimensions(3, 2)));
         Assert.Null(testPlantType.Location);
@@ -72,8 +77,7 @@ public class PlantTypeShould
     public void SetLocationToGivenWhenPassedInCtor()
     {
         var testLocation = new Position(55.44, 44.55, 0.5);
-        var testPlantType = new TestPlantType(new Specie(_ValidTreeName,
-            _treeEnumVDictionary,
+        var testPlantType = new TestPlantType(new Specie(_treeplantNaming,
             new PlantProperties(_hedgeable, Lifecycle.NotSpecified),
             new PlantDimensions(3, 2)),testLocation);
         Assert.Equal(testLocation, testPlantType.Location);

@@ -32,7 +32,7 @@ public class PlantThresholdsShould
         
         _validPlantThresholds = new PlantThresholds(true, _notSpecifiedCycle, _metricHeightMax, _metricHeightMin,
             _metricDiameterMin, _metricDiameterMax, _hedgeable);
-        _specie = new Specie("test", new EnumVDictionary<Language, string>(), new PlantProperties(true, _annualLifecycle),
+        _specie = new Specie(new PlantNaming("Buxus", "Sempervirens", new EnumVDictionary<Language, string>()), new PlantProperties(true, _annualLifecycle),
             new PlantDimensions(_metricHeightMin, _metricDiameterMin));
     }
 

@@ -15,14 +15,14 @@ public abstract class PlantType : PlantBase
             if (!Thresholds.SpecieMeetsThresholds(specie))
             {
                 throw new ThresholdException(
-                    $"Specie \"{specie.ScientificName}\" does not meet requirements to be a {this.GetType().Name.ToLower()}.");
+                    $"Specie \"{specie.Naming.GetScientificName()}\" does not meet requirements to be a {this.GetType().Name.ToLower()}.");
             }
         }
         catch (Exception e)
         {
             Console.WriteLine(e.StackTrace);
             throw new ThresholdException(
-                $"Specie \"{specie.ScientificName}\" does not meet requirements to be a {this.GetType().Name.ToLower()}.");
+                $"Specie \"{specie.Naming.GetScientificName()}\" does not meet requirements to be a {this.GetType().Name.ToLower()}.");
         }
     }
 }

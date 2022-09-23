@@ -7,20 +7,16 @@ namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
 public class Specie : BaseAuditableEntity
 {
-    [MinLength(3)] [MaxLength(20)] public string ScientificName { get; private set; }
-
-    public EnumVDictionary<Language, string>? CommonNames { get; set; }
+    public PlantNaming Naming { get; }
     public PlantProperties Properties { get; set; }
     public PlantDimensions Dimensions { get; }
 
-    public Specie(string scientificName, EnumVDictionary<Language, string> commonNames, PlantProperties properties, PlantDimensions dimensions)
+    public Specie(PlantNaming naming, PlantProperties properties, PlantDimensions dimensions)
     {
+        
         try
-        {
-            ScientificName = !string.IsNullOrWhiteSpace(scientificName)
-                ? scientificName
-                : throw new ArgumentException(nameof(scientificName));
-            CommonNames = commonNames;
+        { 
+            Naming = naming;
             Properties = properties;
             Dimensions = dimensions;
         }
@@ -29,9 +25,5 @@ public class Specie : BaseAuditableEntity
             Console.WriteLine(e.Message);
             throw;
         }
-    }
-
-    public Specie(string scientificName, PlantDimensions dimensions) : this(scientificName, new EnumVDictionary<Language, string>(), null!, dimensions)
-    {
     }
 }
