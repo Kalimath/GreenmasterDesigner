@@ -1,4 +1,4 @@
-﻿namespace be.MbDevelopment.Greenmaster.Models.Entities;
+﻿namespace be.MbDevelopment.Greenmaster.Models.Entities.Places;
 
 public class Position : IEquatable<Position>
 {

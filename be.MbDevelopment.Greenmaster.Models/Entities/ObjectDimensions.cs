@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace be.MbDevelopment.Greenmaster.Models.Entities.Places;
+namespace be.MbDevelopment.Greenmaster.Models.Entities;
 
 public class ObjectDimensions
 {

@@ -1,4 +1,6 @@
-﻿namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
+﻿using be.MbDevelopment.Greenmaster.Models.Entities.Places;
+
+namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
 
 public class Flower : Bush
 {
