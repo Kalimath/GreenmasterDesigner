@@ -1,7 +1,6 @@
 ﻿namespace be.MbDevelopment.Greenmaster.Models.Entities.Places;
 
-public interface IPlaceable
+public interface IPlaceable : IDimensionable
 {
     public Space Place { get; set; }
-    public ObjectDimensions Dimensions { get; set; }
 }
