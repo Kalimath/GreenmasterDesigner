@@ -2,7 +2,7 @@
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
 
-public class Hedge : PlantType
+public class Hedge : Plant
 {
     public Hedge(Specie specie, Position location = null!) : base(specie, new PlantThresholds(true,
         Lifecycle.Perennial,

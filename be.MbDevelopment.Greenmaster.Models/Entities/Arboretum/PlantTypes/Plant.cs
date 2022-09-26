@@ -1,13 +1,22 @@
 ﻿using be.MbDevelopment.Greenmaster.Models.Base;
+using be.MbDevelopment.Greenmaster.Models.Entities.Places;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
 
-public abstract class PlantType : PlantBase
+public abstract class Plant : IPlaceable
 {
-    public PlantType(Specie specie, PlantThresholds thresholds, Position location = null!) : base(specie, location)
+    public virtual Specie Specie { get; }
+    private PlantThresholds Thresholds { get; }
+    public Space Place { get; set; }
+    public ObjectDimensions Dimensions { get; set; }
+
+    public Plant(Specie specie, PlantThresholds thresholds, Position place)
     {
+        Specie = specie;
         Thresholds = thresholds;
+        Dimensions = new ObjectDimensions(thresholds.MetricHeightMin, thresholds.MetricDiameterMin);
+        Place = new Spot(place, specie.Dimensions.MetricDiameter);
         try
         {
             if (!Thresholds.SpecieMeetsThresholds(specie))
@@ -22,5 +31,7 @@ public abstract class PlantType : PlantBase
         }
     }
 
-    private PlantThresholds Thresholds { get; }
+    protected Plant(Specie specie, PlantThresholds thresholds) : this(specie, thresholds, new Position())
+    {
+    }
 }

@@ -58,7 +58,7 @@ public class PlantTypeShould
     {
         Assert.Throws<ThresholdException>(() =>
         {
-            var invalidTree = new TestPlantType(new Specie(_notTreeplantNaming,
+            var invalidTree = new TestPlant(new Specie(_notTreeplantNaming,
                 _plantProperties,
                 new PlantDimensions(_metricHeight, _metricDiameter)));
         });
@@ -68,28 +68,28 @@ public class PlantTypeShould
     public void CreatePlantTypeWhenSpecieIsValid()
     {
         var treeScientificName = $"{_treeGenus} {_treeSpecie}";
-        var testPlantType = new TestPlantType(new Specie(new PlantNaming(_treeGenus, _treeSpecie, _treeEnumVDictionary),
+        var testPlantType = new TestPlant(new Specie(new PlantNaming(_treeGenus, _treeSpecie, _treeEnumVDictionary),
             _plantProperties,
             new PlantDimensions(3, 2)));
         Assert.Equal(treeScientificName, testPlantType.Specie.Naming.GetScientificName());
     }
 
     [Fact]
-    public void SetLocationToNullWhenNotPassedInCtor()
+    public void SetLocationToDefaultWhenNotPassedInCtor()
     {
-        var testPlantType = new TestPlantType(new Specie(_treeplantNaming,
+        var testPlantType = new TestPlant(new Specie(_treeplantNaming,
             _plantProperties,
             new PlantDimensions(3, 2)));
-        Assert.Null(testPlantType.Location);
+        Assert.Equal(new Position(),testPlantType.Place.OuterA);
     }
 
     [Fact]
     public void SetLocationToGivenWhenPassedInCtor()
     {
         var testLocation = new Position(55.44, 44.55, 0.5);
-        var testPlantType = new TestPlantType(new Specie(_treeplantNaming,
+        var testPlantType = new TestPlant(new Specie(_treeplantNaming,
             _plantProperties,
             new PlantDimensions(3, 2)), testLocation);
-        Assert.Equal(testLocation, testPlantType.Location);
+        Assert.Equal(testLocation, testPlantType.Place.OuterA);
     }
 }

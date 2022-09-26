@@ -2,7 +2,7 @@
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
 
-public class Bush : PlantType
+public class Bush : Plant
 {
     public Bush(Specie specie, Position location = null!) : base(specie, new PlantThresholds(true,
         Lifecycle.Perennial,
