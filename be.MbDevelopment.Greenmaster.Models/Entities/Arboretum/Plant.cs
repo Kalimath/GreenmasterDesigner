@@ -1,8 +1,7 @@
-﻿using be.MbDevelopment.Greenmaster.Models.Base;
-using be.MbDevelopment.Greenmaster.Models.Entities.Places;
+﻿using be.MbDevelopment.Greenmaster.Models.Entities.Places;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 
-namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.PlantTypes;
+namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
 public abstract class Plant : IPlaceable
 {
@@ -11,7 +10,7 @@ public abstract class Plant : IPlaceable
     public Space Place { get; set; }
     public ObjectDimensions Dimensions { get; set; }
 
-    public Plant(Specie specie, PlantThresholds thresholds, Position place)
+    protected Plant(Specie specie, PlantThresholds thresholds, Position place)
     {
         Specie = specie;
         Thresholds = thresholds;
