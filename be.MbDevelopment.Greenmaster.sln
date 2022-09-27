@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "be.MbDevelopment.Greenmaste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "be.MbDevelopment.Greenmaster.Tests", "be.MbDevelopment.Greenmaster.Tests\be.MbDevelopment.Greenmaster.Tests.csproj", "{62C17F65-1CBE-4981-A1A8-49972D40C4C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "be.MbDevelopment.Greenmaster.Web", "be.MbDevelopment.Greenmaster.Web\be.MbDevelopment.Greenmaster.Web.csproj", "{AF0178CF-0386-4AFD-9D1B-6AF79A240AD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{62C17F65-1CBE-4981-A1A8-49972D40C4C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62C17F65-1CBE-4981-A1A8-49972D40C4C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62C17F65-1CBE-4981-A1A8-49972D40C4C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF0178CF-0386-4AFD-9D1B-6AF79A240AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0178CF-0386-4AFD-9D1B-6AF79A240AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0178CF-0386-4AFD-9D1B-6AF79A240AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0178CF-0386-4AFD-9D1B-6AF79A240AD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
