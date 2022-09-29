@@ -1,10 +1,11 @@
 ﻿using be.MbDevelopment.Greenmaster.Models.Base;
+using be.MbDevelopment.Greenmaster.Models.Entities.Places;
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
-public class Specie : BaseAuditableEntity
+public sealed class Specie : BaseAuditableEntity, IPlaceable
 {
-    public Specie(PlantNaming naming, PlantProperties properties, PlantDimensions dimensions)
+    public Specie(PlantNaming naming, PlantProperties properties, ObjectDimensions dimensions)
     {
         try
         {
@@ -21,5 +22,5 @@ public class Specie : BaseAuditableEntity
 
     public PlantNaming Naming { get; }
     public PlantProperties Properties { get; set; }
-    public PlantDimensions Dimensions { get; }
+    public ObjectDimensions Dimensions { get; set; }
 }

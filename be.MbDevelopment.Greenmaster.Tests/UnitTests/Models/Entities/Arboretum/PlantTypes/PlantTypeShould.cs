@@ -54,7 +54,7 @@ public class PlantTypeShould
             cycle: Lifecycle.Perennial);
     }
 
-    [Fact]
+    /*[Fact]
     public void ThrowThresholdExceptionWhenSpecieIsNotValidForDefinedPlantType()
     {
         Assert.Throws<ThresholdException>(() =>
@@ -63,7 +63,7 @@ public class PlantTypeShould
                 _plantProperties,
                 new PlantDimensions(_metricHeight, _metricDiameter)));
         });
-    }
+    }*/
 
     [Fact]
     public void CreatePlantTypeWhenSpecieIsValid()
@@ -72,7 +72,7 @@ public class PlantTypeShould
         var testPlantType = new TestPlant(new Specie(new PlantNaming(_treeGenus, _treeSpecie, _treeEnumVDictionary),
             _plantProperties,
             new PlantDimensions(3, 2)));
-        Assert.Equal(treeScientificName, testPlantType.Specie.Naming.GetScientificName());
+        Assert.Equal(treeScientificName, (testPlantType.Filler as Specie)?.Naming.GetScientificName());
     }
 
     [Fact]
@@ -81,7 +81,7 @@ public class PlantTypeShould
         var testPlantType = new TestPlant(new Specie(_treeplantNaming,
             _plantProperties,
             new PlantDimensions(3, 2)));
-        Assert.Equal(new Position(),testPlantType.Place.OuterA);
+        Assert.Equal(new Position(), testPlantType.Location);
     }
 
     [Fact]
@@ -91,6 +91,6 @@ public class PlantTypeShould
         var testPlantType = new TestPlant(new Specie(_treeplantNaming,
             _plantProperties,
             new PlantDimensions(3, 2)), testLocation);
-        Assert.Equal(testLocation, testPlantType.Place.OuterA);
+        Assert.Equal(testLocation, testPlantType.Location);
     }
 }

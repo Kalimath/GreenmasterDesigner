@@ -18,7 +18,7 @@ public class PlantProperties
     public bool IsHedgeable { get; }
     public bool IsMultiSeasonInterest { get; }
     public AttentionLevel MaintenanceLevel { get; }
-    public LeafColors LeafColors { get; }
+    public virtual LeafColors LeafColors { get; }
     public Lifecycle Cycle { get; }
 
     public static IEqualityComparer<PlantProperties> PlantPropertiesComparer { get; } =

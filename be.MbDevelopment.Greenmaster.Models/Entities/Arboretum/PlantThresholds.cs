@@ -67,7 +67,7 @@ public class PlantThresholds
     {
         var res = true;
         var heightMeetsThreshold = HeightMeetsThreshold(specie.Dimensions.MetricHeight);
-        var diameterMeetsThreshold = DiameterMeetsThreshold(specie.Dimensions.MetricDiameter);
+        var diameterMeetsThreshold = DiameterMeetsThreshold(specie.Dimensions.MetricWidth);
 
         if (!heightMeetsThreshold || !diameterMeetsThreshold)
             res = false;

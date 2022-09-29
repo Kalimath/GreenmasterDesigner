@@ -40,13 +40,13 @@ public class PlantDimensionsShould
     [Fact]
     public void SetMetricDiameterWhenHeightGreaterThanZero()
     {
-        Assert.Equal(_validMetricDiameter, _validPlantDimensions.MetricDiameter);
+        Assert.Equal(_validMetricDiameter, _validPlantDimensions.MetricWidth);
     }
 
     [Fact]
     public void SetMetricDiameterWhenConvertToMetricDiameterIsCalledWithValidParams()
     {
         _validPlantDimensions.ConvertToMetricDiameter(_validMetricLength, _validMetricWidth);
-        Assert.Equal(2.5, _validPlantDimensions.MetricDiameter);
+        Assert.Equal(2.5, _validPlantDimensions.MetricWidth);
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System.Linq.Expressions;
 using be.MbDevelopment.Greenmaster.Data;
 using be.MbDevelopment.Greenmaster.Models.Base;
+using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using be.MbDevelopment.Greenmaster.Repositories.Base;
+using be.MbDevelopment.Greenmaster.Tests.TestData;
 using Microsoft.EntityFrameworkCore;
 
 namespace be.MbDevelopment.Greenmaster.Repositories
@@ -50,6 +52,10 @@ namespace be.MbDevelopment.Greenmaster.Repositories
         public async Task<IEnumerable<T>> GetListAsync(Expression<Func<T, bool>> predicate)
         {
             return await _modelDBSets.Where(predicate).ToListAsync();
+        }
+        public List<Specie> GetTestSpecies(Expression<Func<T, bool>> predicate)
+        {
+            return new List<Specie>(){SpecieTestFactory.NewSpecie()};
         }
 
         public IQueryable<T> Query(Expression<Func<T, bool>> predicate)

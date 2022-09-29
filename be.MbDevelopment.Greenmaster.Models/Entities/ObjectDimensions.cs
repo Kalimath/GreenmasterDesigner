@@ -5,16 +5,19 @@ namespace be.MbDevelopment.Greenmaster.Models.Entities;
 public class ObjectDimensions
 {
     public double MetricHeight { get; }
-    public double MetricDiameter { get; private set; }
+    public double MetricWidth { get; private set; }
+    
+    public double MetricLength { get; private set; }
 
-    public ObjectDimensions(double metricHeight, double metricDiameter)
+    public ObjectDimensions(double metricHeight = default, double metricWidth = default, double metricLength = default)
     {
+        MetricLength = metricLength;
         try
         {
             ValidateMetricValue(metricHeight);
-            ValidateMetricValue(metricDiameter);
+            ValidateMetricValue(metricWidth);
             MetricHeight = metricHeight;
-            MetricDiameter = metricDiameter;
+            MetricWidth = metricWidth;
         }
         catch (Exception e)
         {
@@ -22,13 +25,6 @@ public class ObjectDimensions
             throw;
         }
     }
-
-    /*public ObjectDimensions()
-    {
-        MetricHeight = 0;
-        MetricDiameter = 0;
-    }*/
-
     private void ValidateMetricValue(double metricValue)
     {
         if (metricValue <= 0) throw new ArgumentOutOfRangeException(metricValue.ToString(CultureInfo.CurrentCulture));
@@ -39,6 +35,6 @@ public class ObjectDimensions
         ValidateMetricValue(validMetricLength);
         ValidateMetricValue(validMetricWidth);
         var metricValueArray = new[] { validMetricLength, validMetricWidth };
-        MetricDiameter = metricValueArray.Average();
+        MetricWidth = metricValueArray.Average();
     }
 }

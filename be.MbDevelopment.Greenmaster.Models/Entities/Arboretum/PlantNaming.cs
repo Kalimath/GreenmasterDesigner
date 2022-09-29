@@ -19,7 +19,7 @@ public class PlantNaming
 
     public string Genus { get; }
     public string Specie { get; }
-    public EnumVDictionary<Language, string> Common { get; }
+    public virtual EnumVDictionary<Language, string> Common { get; }
 
     public string GetScientificName()
     {

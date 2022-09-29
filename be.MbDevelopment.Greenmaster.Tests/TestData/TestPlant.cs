@@ -8,13 +8,7 @@ namespace be.MbDevelopment.Greenmaster.Tests.TestData;
 
 public class TestPlant : Plant
 {
-    public TestPlant(Specie specie, Position location) : base(specie, new PlantThresholds(true,
-        Lifecycle.NotSpecified,
-        12,
-        0.25,
-        1.2,
-        12,
-        true), location)
+    public TestPlant(Specie specie, Position location) : base(specie,location)
     {
     }
 
