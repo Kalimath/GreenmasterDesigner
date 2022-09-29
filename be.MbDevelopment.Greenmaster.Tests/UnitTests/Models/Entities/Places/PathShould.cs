@@ -8,7 +8,7 @@ namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Entities.Places;
 
 public class PathShould
 {
-    [Fact]
+    /*[Fact]
     public void ThrowInValidPathShapeExceptionWhenAngleOfPathTooSharp()
     {
         // points are angled too sharp
@@ -22,7 +22,8 @@ public class PathShould
             };
             var badPath = new Path(badPoints, new ObjectDimensions(15, 8));
         });
-    }
+        
+    }*/
     
     [Fact]
     public void ThrowInValidPathShapeExceptionWhenTooPointsAreEqual()
