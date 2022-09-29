@@ -13,16 +13,20 @@ public class PlantProperties
         IsMultiSeasonInterest = isMultiSeasonInterest;
         MaintenanceLevel = maintenanceLevel;
         LeafColors = leafColors;
+        FloweringInfo = floweringInfo;
         Cycle = cycle;
     }
 
     public bool IsHedgeable { get; }
+    [DisplayName("Multi-seasonal interest")]
     public bool IsMultiSeasonInterest { get; }
     
     [DisplayName("Maintenance-level")]
     public AttentionLevel MaintenanceLevel { get; }
+    [DisplayName("Leaf colors")]
     public virtual LeafColors LeafColors { get; }
-    
+    public FloweringInfo FloweringInfo { get; }
+
     [DisplayName("Phennology")]
     public Lifecycle Cycle { get; }
 
@@ -45,4 +49,6 @@ public class PlantProperties
             return HashCode.Combine(obj.IsHedgeable, (int)obj.Cycle);
         }
     }
+
+    
 }

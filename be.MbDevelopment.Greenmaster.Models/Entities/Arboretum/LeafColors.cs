@@ -21,4 +21,9 @@ public class LeafColors
     {
         return Autumn == Color.Green;
     }
+    
+    public override string ToString()
+    {
+        return $"Summer: {Summer}, Autumn: {Autumn}";
+    }
 }

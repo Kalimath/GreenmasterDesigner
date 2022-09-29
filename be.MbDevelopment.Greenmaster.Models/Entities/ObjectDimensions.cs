@@ -1,12 +1,15 @@
-﻿using System.Globalization;
+﻿using System.ComponentModel;
+using System.Globalization;
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities;
 
 public class ObjectDimensions
 {
+    [DisplayName("Height")]
     public double MetricHeight { get; }
+    [DisplayName("Width")]
     public double MetricWidth { get; private set; }
-    
+    [DisplayName("Length")]
     public double MetricLength { get; private set; }
 
     public ObjectDimensions(double metricHeight = default, double metricWidth = default, double metricLength = default)

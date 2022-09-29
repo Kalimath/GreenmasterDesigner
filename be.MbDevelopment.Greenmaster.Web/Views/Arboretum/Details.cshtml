@@ -1,0 +1,157 @@
+﻿@using be.MbDevelopment.Greenmaster.Models.StaticData
+@model be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.Specie
+
+@{
+    ViewData["Title"] = "Arboretum";
+}
+
+<div>
+    <div class="text-center">
+        <h1 class="display-4">@Html.DisplayFor(model => model.Naming.ScientificName)</h1>
+        <p>All information can be found here</p>
+    </div>
+    <div>
+        <a href="#">Edit</a>
+        <a href="#">Delete</a>
+    </div>
+    <div>
+        <h4>Naming</h4>
+        <hr/>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Naming.Genus)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Naming.Genus)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Naming.Specie)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Naming.Specie)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Naming.ScientificName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Naming.ScientificName)
+            </dd>
+            <dt class="col-sm-2">
+                Common name
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Naming.Common[Language.Nl.ToString()])
+            </dd>
+            @*<dt class="col-sm-2">
+                Common names
+            </dt>
+            <dd class="col-sm-10">
+                @foreach (var common in Model.Naming.Common)
+                {
+                    @Html.DisplayFor(model => $"{common.Value}\n")
+                    ;
+                }
+            </dd>*@
+        </dl>
+    </div>
+    <div>
+        <h4>Properties</h4>
+        <hr/>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Properties.MaintenanceLevel)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Properties.MaintenanceLevel)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Properties.Cycle)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Properties.Cycle)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Properties.IsMultiSeasonInterest)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Properties.IsMultiSeasonInterest)
+            </dd>
+
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Properties.FloweringInfo.AttractsPollinators)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Properties.FloweringInfo.AttractsPollinators)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Properties.FloweringInfo.IsFragrant)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Properties.FloweringInfo.IsFragrant)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Properties.FloweringInfo.FlowerColors)
+            </dt>
+            <dd class="col-sm-10">
+                @{
+                    var flowerColors = "";
+                    foreach (var flowerColor in Model.Properties.FloweringInfo.FlowerColors)
+                    {
+                        flowerColors += $"{flowerColor.ToString()} ";
+                    }
+                }
+                @flowerColors
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Properties.FloweringInfo.FloweringPeriod)
+            </dt>
+            <dd class="col-sm-10">
+                @{
+                    var period = Model.Properties.FloweringInfo.FloweringPeriod;
+                    var flowerMonths = $"{period.First()} - {period[period.Length - 1]}";
+                }
+                @flowerMonths
+            </dd>
+
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Properties.LeafColors)
+            </dt>
+            <dd class="col-sm-10">
+                @{
+                    var summer = Model.Properties.LeafColors.Summer;
+                    var autumn = Model.Properties.LeafColors.Autumn;
+                    var leafSummer = $"Summer: {summer}";
+                    var leafAutumn = $"Autumn: {autumn}";
+                }
+                @leafSummer <br/> @leafAutumn
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <h4>Dimensions</h4>
+        <hr/>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Dimensions.MetricHeight)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Dimensions.MetricHeight)m
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Dimensions.MetricWidth)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Dimensions.MetricWidth)m
+                    @*TODO: make dto classes instead*@
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Dimensions.MetricLength)
+            </dt>
+            <dd class="col-sm-10">
+                /
+            </dd>
+        </dl>
+    </div>
+</div>
