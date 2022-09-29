@@ -72,7 +72,7 @@ public class PlantTypeShould
         var testPlantType = new TestPlant(new Specie(new PlantNaming(_treeGenus, _treeSpecie, _treeEnumVDictionary),
             _plantProperties,
             new PlantDimensions(3, 2)));
-        Assert.Equal(treeScientificName, (testPlantType.Filler as Specie)?.Naming.GetScientificName());
+        Assert.Equal(treeScientificName, (testPlantType.Filler as Specie)?.Naming.ScientificName);
     }
 
     [Fact]

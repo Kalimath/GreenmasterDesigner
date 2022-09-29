@@ -1,4 +1,5 @@
-﻿using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
+﻿using System.ComponentModel;
+using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
@@ -19,10 +20,9 @@ public class PlantNaming
 
     public string Genus { get; }
     public string Specie { get; }
-    public virtual EnumVDictionary<Language, string> Common { get; }
 
-    public string GetScientificName()
-    {
-        return $"{Genus} {Specie}";
-    }
+    [DisplayName("Scientific name")]
+    public string ScientificName => $"{Genus} {Specie}";
+
+    public virtual EnumVDictionary<Language, string> Common { get; }
 }

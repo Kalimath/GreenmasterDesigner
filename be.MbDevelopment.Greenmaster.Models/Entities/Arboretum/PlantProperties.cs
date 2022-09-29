@@ -1,4 +1,5 @@
-﻿using be.MbDevelopment.Greenmaster.Models.StaticData;
+﻿using System.ComponentModel;
+using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
@@ -17,8 +18,12 @@ public class PlantProperties
 
     public bool IsHedgeable { get; }
     public bool IsMultiSeasonInterest { get; }
+    
+    [DisplayName("Maintenance-level")]
     public AttentionLevel MaintenanceLevel { get; }
     public virtual LeafColors LeafColors { get; }
+    
+    [DisplayName("Phennology")]
     public Lifecycle Cycle { get; }
 
     public static IEqualityComparer<PlantProperties> PlantPropertiesComparer { get; } =

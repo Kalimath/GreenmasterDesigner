@@ -17,7 +17,7 @@ public class PlantNamingShould
         var scientificName = $"{genus} {specie}";
         var plantNaming = new PlantNaming(genus, specie,
             translations);
-        Assert.Equal(scientificName, plantNaming.GetScientificName());
+        Assert.Equal(scientificName, plantNaming.ScientificName);
     }
 
     [Fact]

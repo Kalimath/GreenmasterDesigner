@@ -1,8 +1,42 @@
-﻿@{
+﻿@using be.MbDevelopment.Greenmaster.Models.StaticData
+@model IEnumerable<be.MbDevelopment.Greenmaster.Models.Entities.Arboretum.Specie>
+
+@{
     ViewData["Title"] = "Arboretum";
 }
 
 <div class="text-center">
     <h1 class="display-4">Arboretum</h1>
-    <p>All plant-species can be found here</p>
+    <p>All botanicals can be found here</p>
+    
+    @if (Model.Count() > 0)
+    {
+        <h2>Species</h2>
+        <table class="table">
+                <thead>
+                <th>@Html.DisplayNameFor(model => model.Naming.ScientificName)</th>
+                <th>Common name</th>
+                <th>@Html.DisplayNameFor(model => model.Properties.MaintenanceLevel)</th>
+                <th>@Html.DisplayNameFor(model => model.Properties.Cycle)</th>
+                <th></th>
+                <th></th>
+                </thead>
+                <tbody>
+                @foreach (var specie in Model)
+                {
+                   <td>@Html.DisplayFor(modelItem => specie.Naming.ScientificName)</td> 
+                   <td>@Html.DisplayFor(modelItem => specie.Naming.Common[Language.Nl.ToString()])</td> 
+                   <td>@Html.DisplayFor(modelItem => specie.Properties.MaintenanceLevel)</td> 
+                   <td>@Html.DisplayFor(modelItem => specie.Properties.Cycle)</td> 
+                   <td><a href="#">Edit</a></td>
+                   <td><a href="#">Delete</a></td>
+                }
+                </tbody>
+            </table>
+    }
+    else
+    {
+        <p>No species found.</p>
+    }
+    
 </div>

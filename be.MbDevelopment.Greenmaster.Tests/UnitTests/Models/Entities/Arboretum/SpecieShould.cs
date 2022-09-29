@@ -46,7 +46,7 @@ public class SpecieShould
     {
         var validScientificName = "Strelitzia Reginae";
         var validSpecie = new Specie(_validPlantNaming, _validPlantProperties, _validPlantDimensions);
-        Assert.Equal(validScientificName, validSpecie.Naming.GetScientificName());
+        Assert.Equal(validScientificName, validSpecie.Naming.ScientificName);
     }
 
     [Fact]
