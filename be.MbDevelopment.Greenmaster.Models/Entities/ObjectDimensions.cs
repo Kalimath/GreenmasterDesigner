@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
+using be.MbDevelopment.Greenmaster.Models.Exceptions;
 
-namespace be.MbDevelopment.Greenmaster.Models.Entities;
+namespace be.MbDevelopment.Greenmaster.Models.Arboretum;
 
 public class ObjectDimensions
 {
