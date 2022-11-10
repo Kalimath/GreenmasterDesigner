@@ -9,16 +9,16 @@ public class Specie
     [MinLength(3)] [MaxLength(20)] public string ScientificName { get; private set; }
 
     public EnumVDictionary<Language, string>? CommonNames { get; set; }
-    public PlantProperties Properties { get; set; }
-    public PlantDimensions Dimensions { get; }
+    public IPlantProperties Properties { get; set; }
+    public IPlantDimensions Dimensions { get; }
 
-    public Specie(string scientificName, EnumVDictionary<Language, string> commonNames, PlantProperties properties, PlantDimensions dimensions)
+    public Specie(string scientificName, EnumVDictionary<Language, string> commonNames, IPlantProperties properties, IPlantDimensions dimensions)
     {
         try
         {
             ScientificName = !string.IsNullOrWhiteSpace(scientificName)
                 ? scientificName
-                : throw new ArgumentException(nameof(scientificName));
+                : throw new ArgumentException(null, nameof(scientificName));
             CommonNames = commonNames;
             Properties = properties;
             Dimensions = dimensions;
@@ -30,7 +30,7 @@ public class Specie
         }
     }
 
-    public Specie(string scientificName, PlantDimensions dimensions) : this(scientificName, new EnumVDictionary<Language, string>(), null!, dimensions)
+    public Specie(string scientificName, IPlantDimensions dimensions) : this(scientificName, new EnumVDictionary<Language, string>(), null!, dimensions)
     {
     }
 }

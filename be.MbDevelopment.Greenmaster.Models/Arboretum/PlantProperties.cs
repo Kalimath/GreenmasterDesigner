@@ -2,7 +2,7 @@
 
 namespace be.MbDevelopment.Greenmaster.Models.Arboretum;
 
-public class PlantProperties
+public class PlantProperties : IPlantProperties
 {
     public bool Hedgeable { get; }
     public Lifecycle Cycle { get; }

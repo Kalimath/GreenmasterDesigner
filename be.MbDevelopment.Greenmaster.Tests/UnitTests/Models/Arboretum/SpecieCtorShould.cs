@@ -3,6 +3,7 @@ using be.MbDevelopment.Greenmaster.Models.Arboretum;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
+using NSubstitute;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -10,23 +11,23 @@ namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Arboretum;
 
 public class SpecieCtorShould
 {
-    
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly string _validCommonNameNl;
     private readonly string _validScientificName;
     private readonly EnumVDictionary<Language, string> _validCommonNames;
-    private readonly PlantProperties _validPlantProperties;
-    private readonly PlantDimensions _validPlantDimensions;
-    private readonly Language _language = Language.Nl;
-    
+    private readonly IPlantProperties _validPlantProperties;
+    private readonly IPlantDimensions _validPlantDimensions;
+    private const Language Language = Greenmaster.Models.StaticData.Language.Nl;
+
     public SpecieCtorShould(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
-        _validPlantDimensions = new PlantDimensions(1.5,0.5);
+        _validPlantDimensions = Substitute.For<IPlantDimensions>();
         _validScientificName = "Strelitzia reginae";
         _validCommonNameNl = "Paradijsvogelbloem";
         _validCommonNames = new EnumVDictionary<Language, string>();
-        _validPlantProperties = new PlantProperties(false, Lifecycle.Annual);
+        _validPlantProperties = Substitute.For<IPlantProperties>();
+        //new PlantProperties(false, Lifecycle.Annual)
     }
 
     [Fact]
@@ -42,17 +43,17 @@ public class SpecieCtorShould
     {
         Assert.Throws<ArgumentException>(() =>
         {
-            var badSpecie = new Specie("", _validPlantDimensions);
+            _ = new Specie("", _validPlantDimensions);
         });
     }
 
     [Fact]
     public void SetCommonNamesCorrectlyWhenNotNullOrEmpty()
     {
-        _validCommonNames[_language.ToString()] = _validCommonNameNl;
-        Specie validSpecie = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, _validPlantDimensions);
-        _testOutputHelper.WriteLine(_validCommonNames[_language.ToString()]);
-        Assert.Equal(_validCommonNameNl, validSpecie.CommonNames?[_language.ToString()]);
+        _validCommonNames[Language.ToString()] = _validCommonNameNl;
+        var validSpecie = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, _validPlantDimensions);
+        _testOutputHelper.WriteLine(_validCommonNames[Language.ToString()]);
+        Assert.Equal(_validCommonNameNl, validSpecie.CommonNames?[Language.ToString()]);
     }
 
     [Fact]
@@ -60,8 +61,8 @@ public class SpecieCtorShould
     {
         Assert.Throws<ArgumentNullException>(() =>
         {
-            var badSpecie = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, _validPlantDimensions);
-            _testOutputHelper.WriteLine(_validCommonNames[_language.ToString()]);
+            _ = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, _validPlantDimensions);
+            _testOutputHelper.WriteLine(_validCommonNames[Language.ToString()]);
         });
     }
     
@@ -70,7 +71,7 @@ public class SpecieCtorShould
     {
         Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            var specie = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, new PlantDimensions(-15.8, 66));
+            _ = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, new PlantDimensions(-15.8, 66));
         });
     }
 

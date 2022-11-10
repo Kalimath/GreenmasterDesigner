@@ -3,7 +3,7 @@ using be.MbDevelopment.Greenmaster.Models.Exceptions;
 
 namespace be.MbDevelopment.Greenmaster.Models.Arboretum;
 
-public class PlantDimensions
+public class PlantDimensions : IPlantDimensions
 {
     public PlantDimensions(double metricHeight, double metricDiameter)
     {
@@ -21,13 +21,13 @@ public class PlantDimensions
         }
     }
 
-    private void ValidateMetricValue(double metricValue)
+    private static void ValidateMetricValue(double metricValue)
     {
         if (metricValue <= 0) throw new ArgumentOutOfRangeException(metricValue.ToString(CultureInfo.CurrentCulture));
     }
 
-    public double MetricHeight { get; private set; }
-    public double MetricDiameter { get; private set; }
+    public double MetricHeight { get; set; }
+    public double MetricDiameter { get; set; }
 
     public void ConvertToMetricDiameter(double validMetricLength, double validMetricWidth)
     {
