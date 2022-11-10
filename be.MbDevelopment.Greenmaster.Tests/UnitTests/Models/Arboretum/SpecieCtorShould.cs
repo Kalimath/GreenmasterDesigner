@@ -1,5 +1,6 @@
 ﻿using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
-using be.MbDevelopment.Greenmaster.Models.Arboretum;
+using be.MbDevelopment.Greenmaster.Models.Entities;
+using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using be.MbDevelopment.Greenmaster.Models.Exceptions;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
@@ -16,34 +17,43 @@ public class SpecieCtorShould
     private readonly string _validScientificName;
     private readonly EnumVDictionary<Language, string> _validCommonNames;
     private readonly IPlantProperties _validPlantProperties;
-    private readonly IPlantDimensions _validPlantDimensions;
+    private readonly IObjectDimensions _validObjectDimensions;
+    private readonly INaming _validNaming;
+    private readonly PlantNaming _validPlantNaming;
+    private readonly string _validGenusName;
+    private readonly string _validSpecieName;
     private const Language Language = Greenmaster.Models.StaticData.Language.Nl;
 
     public SpecieCtorShould(ITestOutputHelper testOutputHelper)
     {
+        _validGenusName = "Strelitsia";
+        _validSpecieName = "Reginea";
         _testOutputHelper = testOutputHelper;
-        _validPlantDimensions = Substitute.For<IPlantDimensions>();
-        _validScientificName = "Strelitzia reginae";
+        _validObjectDimensions = Substitute.For<IObjectDimensions>();
+        _validNaming = Substitute.For<INaming>();
+        _validScientificName = $"{_validGenusName} {_validSpecieName}";
         _validCommonNameNl = "Paradijsvogelbloem";
         _validCommonNames = new EnumVDictionary<Language, string>();
         _validPlantProperties = Substitute.For<IPlantProperties>();
         //new PlantProperties(false, Lifecycle.Annual)
+
+        
+        _validPlantNaming = new PlantNaming(_validGenusName, _validSpecieName, _validCommonNames);
     }
 
     [Fact]
     public void SetScientificNameCorrectlyWhenNotNullOrEmpty()
     {
-        var validScientificName = "Strelitzia reginae";
-        Specie validSpecie = new Specie(validScientificName, _validPlantDimensions);
-        Assert.Equal(validScientificName, validSpecie.ScientificName);
+        var validSpecie = new Specie(_validPlantNaming, _validPlantProperties, _validObjectDimensions);
+        Assert.Equal(_validScientificName, (validSpecie.Naming).GetScientificName());
     }
 
     [Fact]
-    public void ThrowArgumentExceptionWhenScientificNameEmpty()
+    public void ThrowArgumentExceptionWhenNamingEmpty()
     {
         Assert.Throws<ArgumentException>(() =>
         {
-            _ = new Specie("", _validPlantDimensions);
+            _ = new Specie(new PlantNaming("","", _validCommonNames), _validPlantProperties, _validObjectDimensions);
         });
     }
 
@@ -51,9 +61,9 @@ public class SpecieCtorShould
     public void SetCommonNamesCorrectlyWhenNotNullOrEmpty()
     {
         _validCommonNames[Language.ToString()] = _validCommonNameNl;
-        var validSpecie = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, _validPlantDimensions);
+        var validSpecie = new Specie(_validPlantNaming, _validPlantProperties, _validObjectDimensions);
         _testOutputHelper.WriteLine(_validCommonNames[Language.ToString()]);
-        Assert.Equal(_validCommonNameNl, validSpecie.CommonNames?[Language.ToString()]);
+        Assert.Equal(_validCommonNameNl, validSpecie.Naming.Common?[Language.ToString()]);
     }
 
     [Fact]
@@ -61,7 +71,7 @@ public class SpecieCtorShould
     {
         Assert.Throws<ArgumentNullException>(() =>
         {
-            _ = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, _validPlantDimensions);
+            _ = new Specie(new PlantNaming("","", _validCommonNames), _validPlantProperties, _validObjectDimensions);
             _testOutputHelper.WriteLine(_validCommonNames[Language.ToString()]);
         });
     }
@@ -71,7 +81,7 @@ public class SpecieCtorShould
     {
         Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            _ = new Specie(_validScientificName, _validCommonNames, _validPlantProperties, new PlantDimensions(-15.8, 66));
+            _ = new Specie(new PlantNaming(_validGenusName,_validSpecieName, new EnumVDictionary<Language, string>()), _validPlantProperties, _validObjectDimensions);
         });
     }
 

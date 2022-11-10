@@ -1,4 +1,5 @@
-﻿using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
+﻿using be.MbDevelopment.Greenmaster.Models.Entities;
+using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using Xunit;
 
 namespace be.MbDevelopment.Greenmaster.Tests.UnitTests.Models.Entities.Arboretum;
@@ -10,7 +11,7 @@ public class PlantDimensionsShould
     private readonly double _validMetricHeight;
     private readonly double _validMetricLength;
     private readonly double _validMetricWidth;
-    private readonly PlantDimensions _validPlantDimensions;
+    private readonly ObjectDimensions _validPlantDimensions;
 
 
     //TODO: test voor het omzetten van l & b naar diameter
@@ -21,14 +22,14 @@ public class PlantDimensionsShould
         _validMetricWidth = 3;
         _validMetricHeight = 1.67;
         _validMetricDiameter = 1.8;
-        _validPlantDimensions = new PlantDimensions(_validMetricHeight, _validMetricDiameter);
+        _validPlantDimensions = new ObjectDimensions(_validMetricHeight, _validMetricDiameter);
     }
 
     [Fact]
     public void ThrowArgumentOutOfRangeExceptionWhenHeightZeroOrBelow()
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() => new PlantDimensions(0, _validMetricDiameter));
-        Assert.Throws<ArgumentOutOfRangeException>(() => new PlantDimensions(-1.67, _validMetricDiameter));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new ObjectDimensions(0, _validMetricDiameter));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new ObjectDimensions(-1.67, _validMetricDiameter));
     }
 
     [Fact]

@@ -1,6 +1,6 @@
-namespace be.MbDevelopment.Greenmaster.Models.Arboretum;
+namespace be.MbDevelopment.Greenmaster.Models.Entities;
 
-public interface IPlantDimensions
+public interface IObjectDimensions
 {
     double MetricHeight { get; set; }
     double MetricDiameter { get; set; }

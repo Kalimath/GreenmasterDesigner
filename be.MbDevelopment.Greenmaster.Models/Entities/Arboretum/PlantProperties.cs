@@ -3,7 +3,7 @@ using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
 
 namespace be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 
-public class PlantProperties
+public class PlantProperties : IPlantProperties
 {
     public PlantProperties(bool isHedgeable, bool isMultiSeasonInterest,
         LeafColors leafColors, FloweringInfo floweringInfo, Lifecycle cycle, AttentionLevel maintenanceLevel = AttentionLevel.Average)

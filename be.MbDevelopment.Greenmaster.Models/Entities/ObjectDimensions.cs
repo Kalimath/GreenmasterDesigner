@@ -1,12 +1,11 @@
 ﻿using System.Globalization;
-using be.MbDevelopment.Greenmaster.Models.Exceptions;
 
-namespace be.MbDevelopment.Greenmaster.Models.Arboretum;
+namespace be.MbDevelopment.Greenmaster.Models.Entities;
 
-public class ObjectDimensions
+public class ObjectDimensions : IObjectDimensions
 {
-    public double MetricHeight { get; }
-    public double MetricDiameter { get; private set; }
+    public double MetricHeight { get; set; }
+    public double MetricDiameter { get; set; }
 
     public ObjectDimensions(double metricHeight, double metricDiameter)
     {

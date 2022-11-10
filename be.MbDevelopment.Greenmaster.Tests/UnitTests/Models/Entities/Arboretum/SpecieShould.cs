@@ -1,8 +1,10 @@
 ﻿using be.MbDevelopment.Greenmaster.Extensions.SubTypes;
+using be.MbDevelopment.Greenmaster.Models.Entities;
 using be.MbDevelopment.Greenmaster.Models.Entities.Arboretum;
 using be.MbDevelopment.Greenmaster.Models.StaticData;
 using be.MbDevelopment.Greenmaster.Models.StaticData.PlantProperties;
 using be.MbDevelopment.Greenmaster.Models.StaticData.Time;
+using NSubstitute;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -12,25 +14,24 @@ public class SpecieShould
 {
     private readonly Language _language = Language.Nl;
     private readonly ITestOutputHelper _testOutputHelper;
-    private readonly string _validCommonNameNl;
     private readonly EnumVDictionary<Language, string> _validCommonNames;
     private readonly string _validGenusName;
-    private readonly PlantDimensions _validPlantDimensions;
-    private readonly PlantProperties _validPlantProperties;
+    private readonly IObjectDimensions _validPlantDimensions;
+    private readonly IPlantProperties _validPlantProperties;
     private readonly string _validSpecieName;
-    private readonly PlantNaming _validPlantNaming;
+    private readonly INaming _validPlantNaming;
     private Month[] _validFloweringPeriod;
 
     public SpecieShould(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
-        _validPlantDimensions = new PlantDimensions(1.5, 0.5);
+        _validPlantDimensions = new ObjectDimensions(1.5, 0.5);
         _validGenusName = "Strelitzia";
         _validSpecieName = "Reginae";
-        _validCommonNameNl = "Paradijsvogelbloem";
+        var validCommonNameNl = "Paradijsvogelbloem";
         _validCommonNames = new EnumVDictionary<Language, string>();
-        _validCommonNames[Language.Nl.ToString()] = _validCommonNameNl;
-        _validPlantNaming = new PlantNaming(_validGenusName, _validSpecieName, _validCommonNames);
+        _validCommonNames[Language.Nl.ToString()] = validCommonNameNl;
+        _validPlantNaming = Substitute.For<INaming>();
         _validFloweringPeriod = new[]
         {
             Month.June, Month.July, Month.August
@@ -54,7 +55,7 @@ public class SpecieShould
     {
         Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            var specie = new Specie(_validPlantNaming, _validPlantProperties, new PlantDimensions(-15.8, 66));
+            var specie = new Specie(_validPlantNaming, _validPlantProperties, new ObjectDimensions(-15.8, 66));
         });
     }
 }
